@@ -1,5 +1,7 @@
 package com.example.easystay.core.configurations;
 
+import com.example.easystay.core.filter.JwtFilter;
+import com.example.easystay.model.enums.Role;
 import com.example.easystay.service.abstracts.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +21,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.net.http.HttpRequest;
 
@@ -29,6 +32,8 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @RequiredArgsConstructor
 public class SecurityConfiguration {
     private final UserService userService;
+    private final JwtFilter jwtFilter;
+
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -48,12 +53,14 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity)throws Exception{
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable) // CSRF korumasını devre dışı bırak
-                .authorizeHttpRequests(req ->
-                        req.requestMatchers("/api/v1/rooms/").hasRole("ADMIN")
-                                .requestMatchers("/api/v1/users/**").hasRole("CUSTOMER")// Bu URL'lere sadece ADMIN rolü erişebilir
-                                .anyRequest().permitAll() // Diğer tüm URL'lere herkes erişebilir
-                )
-                .httpBasic(AbstractHttpConfigurer::disable); // HTTP Basic kimlik doğrulamasını devre dışı bırak
+                .authorizeHttpRequests(req ->//TODO : ROLLER EKLENECEK
+
+
+                                        req
+                                                .anyRequest().permitAll())
+                .httpBasic(AbstractHttpConfigurer::disable)
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);// HTTP Basic kimlik doğrulamasını devre dışı bırak
+
         return httpSecurity.build();
     }
 }
