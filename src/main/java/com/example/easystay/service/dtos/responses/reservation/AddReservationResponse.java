@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ListReservationResponse {
-    private double totalPrice;
+public class AddReservationResponse {
+    private String firstName;
+    private String lastName;
 }

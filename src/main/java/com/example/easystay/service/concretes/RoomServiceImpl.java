@@ -5,6 +5,7 @@ import com.example.easystay.model.enums.RoomType;
 import com.example.easystay.repository.RoomRepository;
 import com.example.easystay.service.abstracts.RoomService;
 import com.example.easystay.service.dtos.requests.room.AddRoomRequest;
+import com.example.easystay.service.dtos.requests.room.UpdateRoomRequest;
 import com.example.easystay.service.dtos.responses.room.AddRoomResponse;
 import com.example.easystay.service.dtos.responses.room.ListRoomResponse;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +34,11 @@ public class RoomServiceImpl implements RoomService {
         addRoomResponse.setPrice(room.getPrice());
         addRoomResponse.setRoomNumber(request.getRoomNumber());
         return addRoomResponse;
+    }
+
+    @Override
+    public AddRoomResponse update(UpdateRoomRequest request) {
+        return null;
     }
 
     /*@Override
