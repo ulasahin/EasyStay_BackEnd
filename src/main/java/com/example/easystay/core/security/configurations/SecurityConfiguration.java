@@ -1,6 +1,7 @@
 package com.example.easystay.core.security.configurations;
 
-import com.example.easystay.core.filter.JwtFilter;
+
+import com.example.easystay.core.security.filter.JwtFilter;
 import com.example.easystay.model.enums.Role;
 import com.example.easystay.service.abstracts.UserService;
 import lombok.RequiredArgsConstructor;
