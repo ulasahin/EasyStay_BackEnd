@@ -19,7 +19,6 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
     public List<ListUserResponse> getAll(){
         return userService.getAll();
     }
@@ -29,7 +28,6 @@ public class UserController {
         return userService.add(request);
     }
     @GetMapping("/myprofile")
-    @ResponseStatus(HttpStatus.OK)
     public User getProfile() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
