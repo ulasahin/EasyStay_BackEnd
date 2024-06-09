@@ -35,13 +35,7 @@ public class RoomServiceImpl implements RoomService {
         addRoomResponse.setRoomNumber(request.getRoomNumber());
         return addRoomResponse;
     }
-
     @Override
-    public AddRoomResponse update(UpdateRoomRequest request) {
-        return null;
-    }
-
-    /*@Override
     public AddRoomResponse update(UpdateRoomRequest request) {
         Room room = roomRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("Böyle bir id yok"));
         room.setRoomNumber(request.getRoomNumber());
@@ -52,7 +46,5 @@ public class RoomServiceImpl implements RoomService {
         addRoomResponse.setPrice(room.getPrice());
         addRoomResponse.setRoomNumber(request.getRoomNumber());
         return addRoomResponse;
-    }*/
-
-
+    }
 }
