@@ -15,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RoomServiceImpl implements RoomService {
     private final RoomRepository roomRepository;
+
     @Override
     public List<ListRoomResponse> getAll() {
         List<Room> rooms = roomRepository.findAll();
@@ -33,6 +34,4 @@ public class RoomServiceImpl implements RoomService {
         addRoomResponse.setRoomNumber(request.getRoomNumber());
         return addRoomResponse;
     }
-
-
 }

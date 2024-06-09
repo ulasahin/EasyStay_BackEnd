@@ -1,9 +1,10 @@
-package com.example.easystay.core.service;
+package com.example.easystay.core.security.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -13,8 +14,12 @@ import java.util.Map;
 
 @Service
 public class JwtService {
-    private final long EXPIRATION = 600_000;
-    private final String SECRET_KEY = "34d76665c2ad8306fdad5a91f0a936aed4284ecf35faf55e61a08f371d8b8c40a649f1e94f6367f03345e02d37ce03c98c4a66ac27eb3535ffaad53cb7d7a3b3";
+    @Value("${jwt.expiration}")
+    private long EXPIRATION;
+
+    @Value("${jwt.key}")
+    private String SECRET_KEY;
+
     public String generateToken(String userName, Map<String, Object> extraClaims){
         String token = Jwts
                 .builder()

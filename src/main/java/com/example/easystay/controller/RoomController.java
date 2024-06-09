@@ -8,6 +8,7 @@ import com.example.easystay.service.dtos.requests.room.AddRoomRequest;
 import com.example.easystay.service.dtos.responses.room.AddRoomResponse;
 import com.example.easystay.service.dtos.responses.room.ListRoomResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.print.Book;
@@ -21,14 +22,17 @@ public class RoomController {
     private final RoomRepository roomRepository;
 
     @GetMapping("/getAll")
+    @ResponseStatus(HttpStatus.OK)
     private List<ListRoomResponse> getAll(){
         return roomService.getAll();
     }
     @GetMapping("/getByRoomType")
+    @ResponseStatus(HttpStatus.OK)
     private List<Room> getRoomType(@RequestParam RoomType roomType){
         return roomRepository.findByRoomType(roomType);
     }
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     private AddRoomResponse add(AddRoomRequest request){
         return roomService.add(request);
     }

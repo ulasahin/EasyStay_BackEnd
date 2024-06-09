@@ -1,4 +1,4 @@
-package com.example.easystay.core.configurations;
+package com.example.easystay.core.security.configurations;
 
 import com.example.easystay.service.abstracts.UserService;
 import lombok.RequiredArgsConstructor;

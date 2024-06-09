@@ -1,6 +1,6 @@
-package com.example.easystay.core.filter;
+package com.example.easystay.core.security.filter;
 
-import com.example.easystay.core.service.JwtService;
+import com.example.easystay.core.security.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
