@@ -1,5 +1,6 @@
 package com.example.easystay.service.concretes;
 
+import com.example.easystay.core.exceptionhandling.exception.types.BusinessException;
 import com.example.easystay.model.entity.User;
 import com.example.easystay.repository.UserRepository;
 import com.example.easystay.service.abstracts.UserService;

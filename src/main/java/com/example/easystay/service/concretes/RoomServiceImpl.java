@@ -16,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RoomServiceImpl implements RoomService {
     private final RoomRepository roomRepository;
+
     @Override
     public List<ListRoomResponse> getAll() {
         List<Room> rooms = roomRepository.findAll();
@@ -37,6 +38,11 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public AddRoomResponse update(UpdateRoomRequest request) {
+        return null;
+    }
+
+    /*@Override
+    public AddRoomResponse update(UpdateRoomRequest request) {
         Room room = roomRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("Böyle bir id yok"));
         room.setRoomNumber(request.getRoomNumber());
         room.setPrice(request.getPrice());
@@ -46,7 +52,7 @@ public class RoomServiceImpl implements RoomService {
         addRoomResponse.setPrice(room.getPrice());
         addRoomResponse.setRoomNumber(request.getRoomNumber());
         return addRoomResponse;
-    }
+    }*/
 
 
 }

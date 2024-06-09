@@ -1,6 +1,5 @@
-package com.example.easystay.service.dtos.requests.user;
+package com.example.easystay.service.dtos.requests.auth;
 
-import com.example.easystay.model.enums.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -14,7 +13,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddUserRequest {
+public class RegisterRequest {
+
     @NotBlank(message = "İsim kısmı boş olamaz.")
     @Size(min=3,max = 50,message = "İsim 3 ila 50 karakter arasında olabilir.")
     private String firstName;
@@ -32,11 +32,13 @@ public class AddUserRequest {
             ,message = "Şifre en az bir numerik, en az bir tane büyük harf içermeli ve en az 6 karakter olmalıdır.")
     private String password;
 
+    @NotBlank(message = "Şifre alanı boş olamaz.")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[A-Z]).{6,}$"
+            ,message = "Şifre en az bir numerik, en az bir tane büyük harf içermeli ve en az 6 karakter olmalıdır.")
+    private String passwordConfirm;
+
     @NotBlank(message = "Numara kısmı boş olamaz.")
     @Pattern(regexp= "\\d+" , message = "Numara sadece numerik ifadeler içermelidir.")
     @Size(min = 11,max = 11, message = "Numara kısmı 11 haneli olmalı.")
     private String phoneNumber;
-
-    private Role role;
-
 }

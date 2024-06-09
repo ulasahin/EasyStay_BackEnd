@@ -1,4 +1,4 @@
-package com.example.easystay.core.configurations;
+package com.example.easystay.core.security.configurations;
 
 import com.example.easystay.core.filter.JwtFilter;
 import com.example.easystay.model.enums.Role;
