@@ -15,7 +15,7 @@ import java.awt.print.Book;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/rooms")
+@RequestMapping("/rooms")
 @RequiredArgsConstructor
 public class RoomController {
     private final RoomService roomService;
@@ -36,4 +36,9 @@ public class RoomController {
     private AddRoomResponse add(AddRoomRequest request){
         return roomService.add(request);
     }
+
+    /*@PutMapping
+    private AddRoomResponse update(UpdateRoomRequest request)
+    {return roomService.update(request);
+    }*/
 }
