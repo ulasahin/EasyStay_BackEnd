@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-    @GetMapping
+    @GetMapping("/get")
     public List<ListUserResponse> getAll(){
         return userService.getAll();
     }
