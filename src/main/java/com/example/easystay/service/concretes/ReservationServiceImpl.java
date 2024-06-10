@@ -1,5 +1,6 @@
 package com.example.easystay.service.concretes;
 
+import com.example.easystay.core.exceptionhandling.exception.types.BusinessException;
 import com.example.easystay.mapper.ReservationMapper;
 import com.example.easystay.model.entity.Reservation;
 import com.example.easystay.model.entity.Room;
@@ -59,7 +60,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public AddReservationResponse update(UpdateReservationRequest request) {
-        Reservation reservation = reservationRepository.findById(request.getId()).orElseThrow();
+        Reservation reservation = reservationRepository.findById(request.getId()).orElseThrow(()-> new BusinessException("Böyle bir rezervasyon bulunamamıştır."));
         reservation.setReservationStatus(request.getStatus());
         if(request.getStatus()==ReservationStatus.REJECTED){
             reservationRepository.delete(reservation);

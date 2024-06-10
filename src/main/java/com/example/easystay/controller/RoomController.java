@@ -21,17 +21,19 @@ public class RoomController {
     private final RoomService roomService;
     private final RoomRepository roomRepository;
 
-    @GetMapping("/getAll")
+    @GetMapping("allRooms")
     @ResponseStatus(HttpStatus.OK)
     private List<ListRoomResponse> getAll(){
         return roomService.getAll();
     }
-    @GetMapping("/getByRoomType")
+
+    @GetMapping("ByRoomType")
     @ResponseStatus(HttpStatus.OK)
     private List<Room> getRoomType(@RequestParam RoomType roomType){
         return roomRepository.findByRoomType(roomType);
     }
-    @PostMapping
+
+    @PostMapping("addRoom")
     @ResponseStatus(HttpStatus.CREATED)
     private AddRoomResponse add(AddRoomRequest request){
         return roomService.add(request);

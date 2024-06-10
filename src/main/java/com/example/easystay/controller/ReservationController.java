@@ -11,6 +11,7 @@ import com.example.easystay.service.dtos.responses.reservation.AddReservationRes
 import com.example.easystay.service.dtos.responses.reservation.ListMyReservationResponse;
 import com.example.easystay.service.dtos.responses.reservation.ListReservationResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -27,23 +28,26 @@ public class ReservationController {
     private final ReservationService reservationService;
     private final UserRepository userRepository;
 
-
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping
+    @GetMapping("allReservs")
+    @ResponseStatus(HttpStatus.OK)
     public List<ListReservationResponse> getAll(){
        return reservationService.getAll();
     }
-    @PostMapping
+
+    @PostMapping("addReservs")
+    @ResponseStatus(HttpStatus.CREATED)
     public AddReservationResponse add(AddReservationRequest request){
      return reservationService.add(request);
     }
 
-    @GetMapping("myreservations")
+    @GetMapping("myReservations")
     public List<ListMyReservationResponse> getMyReservations(){
         return reservationService.getUserReservations();
     }
 
-    @PutMapping
+    @PutMapping("editReservs")
+    @ResponseStatus(HttpStatus.OK)
     public AddReservationResponse controlReservation(UpdateReservationRequest request){
         return reservationService.update(request);
     }
