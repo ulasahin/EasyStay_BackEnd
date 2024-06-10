@@ -68,8 +68,5 @@ public class ReservationServiceImpl implements ReservationService {
         }
         AddReservationResponse response = ReservationMapper.INSTANCE.reservationFromResponse(reservation);
         return response;
-
     }
-
-
 }
