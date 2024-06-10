@@ -18,16 +18,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-    @GetMapping("/get")
+    @GetMapping("allUsers")
+    @ResponseStatus(HttpStatus.OK)
     public List<ListUserResponse> getAll(){
         return userService.getAll();
     }
-    @PostMapping
+    @PostMapping("addUser")
     @ResponseStatus(HttpStatus.CREATED)
     public AddUserResponse add(AddUserRequest request){
         return userService.add(request);
     }
-    @GetMapping("/myprofile")
+    @GetMapping("myprofile")
+    @ResponseStatus(HttpStatus.OK)
     public User getProfile() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();

@@ -1,5 +1,6 @@
 package com.example.easystay.service.concretes;
 
+import com.example.easystay.core.exceptionhandling.exception.types.BusinessException;
 import com.example.easystay.model.entity.Room;
 import com.example.easystay.model.enums.RoomType;
 import com.example.easystay.repository.RoomRepository;
@@ -37,7 +38,7 @@ public class RoomServiceImpl implements RoomService {
     }
     @Override
     public AddRoomResponse update(UpdateRoomRequest request) {
-        Room room = roomRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("Böyle bir id yok"));
+        Room room = roomRepository.findById(request.getId()).orElseThrow(() -> new BusinessException("Oda bulunamamıştır."));
         room.setRoomNumber(request.getRoomNumber());
         room.setPrice(request.getPrice());
         room.setStatus(request.getStatus());
