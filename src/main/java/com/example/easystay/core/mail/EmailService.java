@@ -5,6 +5,7 @@ import com.example.easystay.model.entity.User;
 import com.example.easystay.repository.UserRepository;
 import jakarta.validation.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -17,6 +18,9 @@ public class EmailService {
     @Autowired
     private UserRepository userRepository;
 
+    @Value("${email.default}")
+    private String EMAİL;
+
     public void sendEmailToUser(String userEmail,String subject,String body) {
         User user = userRepository.findByEmail(userEmail).orElseThrow(
                 ()-> new BusinessException("Böyle bir e-mail bulunamamıştır."));
@@ -25,7 +29,7 @@ public class EmailService {
             message.setTo(user.getEmail());
             message.setSubject(subject);
             message.setText(body);
-            message.setFrom("ulasapp@gmail.com");
+            message.setFrom(EMAİL);
 
             mailSender.send(message);
         }
