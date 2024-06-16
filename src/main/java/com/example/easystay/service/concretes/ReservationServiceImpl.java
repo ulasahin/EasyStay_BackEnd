@@ -6,6 +6,7 @@ import com.example.easystay.model.entity.Reservation;
 import com.example.easystay.model.entity.Room;
 import com.example.easystay.model.entity.User;
 import com.example.easystay.model.enums.ReservationStatus;
+import com.example.easystay.model.enums.Status;
 import com.example.easystay.repository.ReservationRepository;
 import com.example.easystay.repository.RoomRepository;
 import com.example.easystay.repository.UserRepository;
@@ -21,6 +22,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -39,9 +41,11 @@ public class ReservationServiceImpl implements ReservationService {
         User user = userRepository.findById(request.getUserId()).orElseThrow();
         Room room = roomRepository.findById(request.getRoomId()).orElseThrow();
         Reservation reservation = ReservationMapper.INSTANCE.reservationFromRequest(request);
+        isRoomFull(room);
         reservation.setReservationStatus(ReservationStatus.PENDING);
         reservation.setUser(user);
         reservation.setRoom(room);
+        room.setStatus(Status.OCCUPIED);
         reservation = reservationRepository.save(reservation);
         AddReservationResponse response = ReservationMapper.INSTANCE.reservationFromResponse(reservation);
         return response;
@@ -70,4 +74,27 @@ public class ReservationServiceImpl implements ReservationService {
         AddReservationResponse response = ReservationMapper.INSTANCE.reservationFromResponse(reservation);
         return response;
     }
+
+    @Override
+    public void cancelReservation(long id) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User user = userRepository.findByEmail(username).orElseThrow();
+        Reservation reservation = reservationRepository.findById(id).orElseThrow();
+        if(reservation.getUser().getId()==user.getId()){
+            reservation.setReservationStatus(ReservationStatus.CANCELLED);
+            reservation.getRoom().setStatus(Status.AVAILABLE);
+            reservationRepository.save(reservation);
+        }
+        else {
+            throw new BusinessException("Böyle bir rezervasyonunuz yoktur");
+        }
+    }
+
+    public void isRoomFull(Room room){
+        if(room.getStatus()== Status.OCCUPIED){
+            throw new BusinessException("Bu oda doludur.");
+        }
+    }
+
 }

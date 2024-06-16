@@ -17,4 +17,6 @@ public interface ReservationService {
     List<ListMyReservationResponse> getUserReservations();
 
     AddReservationResponse update(UpdateReservationRequest request);
+
+    void cancelReservation(long id);
 }

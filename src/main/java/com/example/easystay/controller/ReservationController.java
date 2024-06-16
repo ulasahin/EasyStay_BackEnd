@@ -48,7 +48,12 @@ public class ReservationController {
 
     @PutMapping("editReservs")
     @ResponseStatus(HttpStatus.OK)
-    public AddReservationResponse controlReservation(UpdateReservationRequest request){
+    public AddReservationResponse controlReservation(@RequestBody UpdateReservationRequest request){
         return reservationService.update(request);
+    }
+    @PutMapping("cancelReservation")
+    @ResponseStatus(HttpStatus.OK)
+    public void cancelReservation(@RequestParam long id){
+        reservationService.cancelReservation(id);
     }
 }
