@@ -17,7 +17,7 @@ public class EmailService {
     private UserRepository userRepository;
 
     @Value("${email.default}")
-    private String EMAİL;
+    private String EMAIL;
 
     public void sendEmailToUser(String userEmail,String subject,String body) {
         User user = userRepository.findByEmail(userEmail).orElseThrow(
@@ -27,7 +27,7 @@ public class EmailService {
             message.setTo(user.getEmail());
             message.setSubject(subject);
             message.setText(body);
-            message.setFrom(EMAİL);
+            message.setFrom(EMAIL);
 
             mailSender.send(message);
         }
