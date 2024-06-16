@@ -14,12 +14,12 @@ public class AuthController {
     private final AuthService authService;
     //TODO: @Valid Anatasyonunu ekle
 
-    @PostMapping("login")
+    @PostMapping("/login")
     @ResponseStatus(HttpStatus.CREATED)
     public String login(@RequestBody LoginRequest request){
         return authService.login(request);
     }
-    @PostMapping("register")
+    @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public void register(@RequestBody RegisterRequest request){
         authService.register(request);
