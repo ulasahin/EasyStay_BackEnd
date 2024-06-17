@@ -1,4 +1,4 @@
-package com.example.easystay.core;
+package com.example.easystay.core.tasks;
 
 import com.example.easystay.core.exceptionhandling.exception.types.BusinessException;
 import com.example.easystay.model.entity.Reservation;
@@ -46,7 +46,4 @@ public class ScheduledTasks {
         roomRepository.save(room);
         System.out.println("Oda " + roomId + " AVAILABLE olarak güncellendi: " + LocalDateTime.now());
     }
-
-
-
 }
