@@ -40,7 +40,7 @@ public class RoomController {
         return roomService.add(request);
     }
 
-    @DeleteMapping
+    @DeleteMapping("deleteRoom")
     public DeleteRoomResponse delete(@RequestParam long id){
         return roomService.delete(id);
     }

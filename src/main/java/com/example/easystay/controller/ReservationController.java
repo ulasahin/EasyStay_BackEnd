@@ -8,6 +8,7 @@ import com.example.easystay.service.abstracts.ReservationService;
 import com.example.easystay.service.dtos.requests.reservation.AddReservationRequest;
 import com.example.easystay.service.dtos.requests.reservation.UpdateReservationRequest;
 import com.example.easystay.service.dtos.responses.reservation.AddReservationResponse;
+import com.example.easystay.service.dtos.responses.reservation.DeleteReservationResponse;
 import com.example.easystay.service.dtos.responses.reservation.ListMyReservationResponse;
 import com.example.easystay.service.dtos.responses.reservation.ListReservationResponse;
 import lombok.RequiredArgsConstructor;
@@ -55,5 +56,9 @@ public class ReservationController {
     @ResponseStatus(HttpStatus.OK)
     public void cancelReservation(@RequestParam long id){
         reservationService.cancelReservation(id);
+    }
+    @DeleteMapping("deleteReservation")
+    public DeleteReservationResponse delete(@RequestParam long id){
+        return reservationService.delete(id);
     }
 }
