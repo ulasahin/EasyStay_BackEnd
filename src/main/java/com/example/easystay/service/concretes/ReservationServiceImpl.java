@@ -13,9 +13,7 @@ import com.example.easystay.repository.UserRepository;
 import com.example.easystay.service.abstracts.ReservationService;
 import com.example.easystay.service.dtos.requests.reservation.AddReservationRequest;
 import com.example.easystay.service.dtos.requests.reservation.UpdateReservationRequest;
-import com.example.easystay.service.dtos.responses.reservation.AddReservationResponse;
-import com.example.easystay.service.dtos.responses.reservation.ListMyReservationResponse;
-import com.example.easystay.service.dtos.responses.reservation.ListReservationResponse;
+import com.example.easystay.service.dtos.responses.reservation.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,7 +28,7 @@ public class ReservationServiceImpl implements ReservationService {
     private final UserRepository userRepository;
     private final RoomRepository roomRepository;
     private final ReservationRepository reservationRepository;
-    //TODO: Eksik operasyonlar eklenecek.
+
     @Override
     public List<ListReservationResponse> getAll() {
         List<Reservation> reservationList = reservationRepository.findAll();
@@ -39,8 +37,10 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public AddReservationResponse add(AddReservationRequest request) {
-        User user = userRepository.findById(request.getUserId()).orElseThrow();
-        Room room = roomRepository.findById(request.getRoomId()).orElseThrow();
+        User user = userRepository.findById(request.getUserId()).orElseThrow(()
+                -> new BusinessException("Böyle bir Id'ye sahip kullanıcı bulunamamıştır."));
+        Room room = roomRepository.findById(request.getRoomId()).orElseThrow(()
+                -> new BusinessException("Böyle bir Id'ye sahip oda bulunamamıştır."));
         Reservation reservation = ReservationMapper.INSTANCE.reservationFromRequest(request);
         isRoomFull(room);
         reservation.setReservationStatus(ReservationStatus.PENDING);
@@ -91,6 +91,24 @@ public class ReservationServiceImpl implements ReservationService {
             throw new BusinessException("Böyle bir rezervasyonunuz yoktur.");
         }
     }
+
+    @Override
+    public DeleteReservationResponse delete(long id) {
+        Reservation reservation = reservationRepository.findById(id).orElseThrow(()
+                -> new BusinessException("Böyle bir Id'ye sahip rezervasyon bulunamamıştır."));
+        DeleteReservationResponse response = ReservationMapper.INSTANCE.reservationFromDeleteResponse(reservation);
+        reservationRepository.delete(reservation);
+        return response;
+    }
+
+    @Override
+    public GetResevationResponse getById(long id) {
+        Reservation reservation = reservationRepository.findById(id).orElseThrow(()
+                -> new BusinessException("Böyle bir Id'ye sahip rezervasyon bulunamadı."));
+        GetResevationResponse response = ReservationMapper.INSTANCE.reservationFromGetResponse(reservation);
+        return response;
+    }
+
     //Business Rules
     public void isRoomFull(Room room){
         if(room.getStatus()== Status.OCCUPIED){
