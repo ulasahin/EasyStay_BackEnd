@@ -1,4 +1,4 @@
-package com.example.easystay.service.dtos.responses;
+package com.example.easystay.service.dtos.responses.payment;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

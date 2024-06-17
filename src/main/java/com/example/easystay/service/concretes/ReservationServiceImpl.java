@@ -30,6 +30,7 @@ public class ReservationServiceImpl implements ReservationService {
     private final UserRepository userRepository;
     private final RoomRepository roomRepository;
     private final ReservationRepository reservationRepository;
+    //TODO: Eksik operasyonlar eklenecek.
     @Override
     public List<ListReservationResponse> getAll() {
         List<Reservation> reservationList = reservationRepository.findAll();
@@ -87,10 +88,10 @@ public class ReservationServiceImpl implements ReservationService {
             reservationRepository.save(reservation);
         }
         else {
-            throw new BusinessException("Böyle bir rezervasyonunuz yoktur");
+            throw new BusinessException("Böyle bir rezervasyonunuz yoktur.");
         }
     }
-
+    //Business Rules
     public void isRoomFull(Room room){
         if(room.getStatus()== Status.OCCUPIED){
             throw new BusinessException("Bu oda doludur.");

@@ -1,4 +1,4 @@
-package com.example.easystay.service.dtos.requests;
+package com.example.easystay.service.dtos.requests.payment;
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
