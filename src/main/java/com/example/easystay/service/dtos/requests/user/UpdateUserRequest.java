@@ -14,29 +14,25 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddUserRequest {
-    @NotBlank(message = "İsim kısmı boş olamaz.")
-    @Size(min=3,max = 50,message = "İsim 3 ila 50 karakter arasında olabilir.")
+public class UpdateUserRequest {
+    private long id;
+
+    @Size(min=0,max = 50,message = "İsim 3 ila 50 karakter arasında olabilir.")
     private String firstName;
 
-    @NotBlank(message = "Soyisim kısmı boş olamaz.")
-    @Size(min=3,max = 50,message = "Soyisim 3 ila 50 karakter arasında olabilir.")
+    @Size(min=0,max = 50,message = "Soyisim 3 ila 50 karakter arasında olabilir.")
     private String lastName;
 
-    @NotBlank(message = "E-mail alanı boş olamaz.")
     @Email(message = "Geçerli bir Email değil.")
     private String email;
 
-    @NotBlank(message = "Şifre alanı boş olamaz.")
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[A-Z]).{6,}$"
             ,message = "Şifre en az bir numerik, en az bir tane büyük harf içermeli ve en az 6 karakter olmalıdır.")
     private String password;
 
-    @NotBlank(message = "Numara kısmı boş olamaz.")
     @Pattern(regexp= "\\d+" , message = "Numara sadece numerik ifadeler içermelidir.")
-    @Size(min = 10,max = 10, message = "Numara kısmı 10 haneli olmalı.")
+    @Size(min = 11,max = 11, message = "Numara kısmı 11 haneli olmalı.")
     private String phoneNumber;
 
     private Role role;
-
 }

@@ -39,6 +39,6 @@ public class RegisterRequest {
 
     @NotBlank(message = "Numara kısmı boş olamaz.")
     @Pattern(regexp= "\\d+" , message = "Numara sadece numerik ifadeler içermelidir.")
-    @Size(min = 11,max = 11, message = "Numara kısmı 11 haneli olmalı.")
+    @Size(min = 10,max = 10, message = "Numara kısmı 10 haneli olmalı.")
     private String phoneNumber;
 }

@@ -57,6 +57,7 @@ public class AuthServiceImpl implements AuthService {
         user.setLastName(request.getLastName());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setPhoneNumber(request.getPhoneNumber());
         user.setRole(Role.CUSTOMER);
         userRepository.save(user);
         RegisterResponse response = AuthMapper.INSTANCE.responseFromRegisterResponse(user);

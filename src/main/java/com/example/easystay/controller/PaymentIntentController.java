@@ -1,7 +1,7 @@
 package com.example.easystay.controller;
 
-import com.example.easystay.service.dtos.requests.Request;
-import com.example.easystay.service.dtos.responses.Response;
+import com.example.easystay.service.dtos.requests.payment.Request;
+import com.example.easystay.service.dtos.responses.payment.Response;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 import com.stripe.param.PaymentIntentCreateParams;

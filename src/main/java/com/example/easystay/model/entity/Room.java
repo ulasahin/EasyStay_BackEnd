@@ -19,7 +19,6 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(unique = true)
     private int roomNumber;
     private double price;
     @Enumerated(EnumType.STRING)
