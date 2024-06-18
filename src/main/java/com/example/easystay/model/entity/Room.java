@@ -27,4 +27,5 @@ public class Room {
     private Status status = Status.AVAILABLE;
     @OneToMany(mappedBy = "room")
     private List<Reservation> reservationList;
+
 }
