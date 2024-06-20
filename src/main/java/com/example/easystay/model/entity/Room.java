@@ -1,5 +1,6 @@
 package com.example.easystay.model.entity;
 
+import com.example.easystay.core.report.loging.CrudEventListener;
 import com.example.easystay.model.enums.RoomType;
 import com.example.easystay.model.enums.Status;
 import jakarta.persistence.*;
@@ -15,6 +16,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EntityListeners(CrudEventListener.class)//Loglama için gerekli.
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
