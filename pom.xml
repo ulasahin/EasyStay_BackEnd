@@ -103,12 +103,18 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
+        <!--Loging System-->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-rest-core</artifactId>
             <version>4.3.1</version>
         </dependency>
-
+        <!--Performans Analizi için-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>3.3.0</version>
+        </dependency>
     </dependencies>
 
     <build>
