@@ -1,5 +1,6 @@
 package com.example.easystay.model.entity;
 
+import com.example.easystay.core.report.loging.CrudEventListener;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +15,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EntityListeners(CrudEventListener.class)//Loglama için gerekli.
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

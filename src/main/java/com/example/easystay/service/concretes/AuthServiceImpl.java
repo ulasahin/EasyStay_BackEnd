@@ -1,6 +1,7 @@
 package com.example.easystay.service.concretes;
 
 import com.example.easystay.core.exceptionhandling.exception.types.BusinessException;
+import com.example.easystay.core.report.loging.CrudEventListener;
 import com.example.easystay.core.security.service.JwtService;
 import com.example.easystay.mapper.AuthMapper;
 import com.example.easystay.model.enums.Role;
@@ -10,6 +11,7 @@ import com.example.easystay.service.abstracts.AuthService;
 import com.example.easystay.service.dtos.requests.auth.LoginRequest;
 import com.example.easystay.service.dtos.requests.auth.RegisterRequest;
 import com.example.easystay.service.dtos.responses.auth.RegisterResponse;
+import jakarta.persistence.EntityListeners;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

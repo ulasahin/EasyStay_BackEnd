@@ -1,5 +1,6 @@
 package com.example.easystay.model.entity;
 
+import com.example.easystay.core.report.loging.CrudEventListener;
 import com.example.easystay.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EntityListeners(CrudEventListener.class)//Loglama için gerekli.
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
