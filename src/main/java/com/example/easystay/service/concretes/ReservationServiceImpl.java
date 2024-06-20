@@ -1,6 +1,7 @@
 package com.example.easystay.service.concretes;
 
 import com.example.easystay.core.exceptionhandling.exception.types.BusinessException;
+import com.example.easystay.core.mail.EmailService;
 import com.example.easystay.mapper.ReservationMapper;
 import com.example.easystay.model.entity.Reservation;
 import com.example.easystay.model.entity.Room;
@@ -28,6 +29,7 @@ public class ReservationServiceImpl implements ReservationService {
     private final UserRepository userRepository;
     private final RoomRepository roomRepository;
     private final ReservationRepository reservationRepository;
+    private final EmailService emailService;
 
     @Override
     public List<ListReservationResponse> getAll() {
@@ -85,6 +87,11 @@ public class ReservationServiceImpl implements ReservationService {
         if(reservation.getUser().getId()==user.getId()){
             reservation.setReservationStatus(ReservationStatus.CANCELLED);
             reservation.getRoom().setStatus(Status.AVAILABLE);
+            // Kullanıcının rezervasyon iptalinde yöneticiye ve kullanıcıya mail yoluyla bildirim atılması.
+            emailService.sendEmailToUser("innvisionmanagement@gmail.com"
+                    ,"Rezervasyon İptali","'"+user.getEmail()+"'"+" e-mail'e sahip kullanıcı "+"'"+reservation.getRoom().getRoomNumber()+"'"+" numaralı oda rezervasyonunu iptal etmiştir.");
+
+            emailService.sendEmailToUser(user.getEmail(),"Rezervasyon İptali",+reservation.getRoom().getRoomNumber()+" numaralı oda rezervasyonunuz iptal edilmiştir.");
             reservationRepository.save(reservation);
         }
         else {
