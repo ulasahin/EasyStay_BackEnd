@@ -7,6 +7,7 @@ import com.example.easystay.model.entity.Reservation;
 import com.example.easystay.model.entity.Room;
 import com.example.easystay.model.entity.User;
 import com.example.easystay.model.enums.ReservationStatus;
+import com.example.easystay.model.enums.Role;
 import com.example.easystay.model.enums.Status;
 import com.example.easystay.repository.ReservationRepository;
 import com.example.easystay.repository.RoomRepository;
@@ -87,6 +88,8 @@ public class ReservationServiceImpl implements ReservationService {
         if(reservation.getUser().getId()==user.getId()){
             reservation.setReservationStatus(ReservationStatus.CANCELLED);
             reservation.getRoom().setStatus(Status.AVAILABLE);
+            //Rolü admin olan tüm kullanıcılara mail yollar.
+            sendAllAdminCancelMail(reservation,user);
             // Kullanıcının rezervasyon iptalinde yöneticiye ve kullanıcıya mail yoluyla bildirim atılması.
             emailService.sendEmailToUser("innvisionmanagement@gmail.com"
                     ,"Rezervasyon İptali","'"+user.getEmail()+"'"+" e-mail'e sahip kullanıcı "+"'"+reservation.getRoom().getRoomNumber()+"'"+" numaralı oda rezervasyonunu iptal etmiştir.");
@@ -122,5 +125,12 @@ public class ReservationServiceImpl implements ReservationService {
             throw new BusinessException("Bu oda doludur.");
         }
     }
-
+    public void sendAllAdminCancelMail(Reservation reservation, User user){
+        List<User> users = userRepository.findAll().stream().filter(u-> u.getRole()== Role.ADMIN).toList();
+        List<String> users1 = users.stream().map(u->u.getEmail()).toList();
+        for (String email : users1){
+            emailService.sendEmailToUser("innvisionmanagement@gmail.com"
+                    ,"Rezervasyon İptali","'"+user.getEmail()+"'"+" e-mail'e sahip kullanıcı "+"'"+reservation.getRoom().getRoomNumber()+"'"+" numaralı oda rezervasyonunu iptal etmiştir.");
+        }
+    }
 }
