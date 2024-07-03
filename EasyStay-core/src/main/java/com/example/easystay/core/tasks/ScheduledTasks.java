@@ -23,7 +23,7 @@ public class ScheduledTasks {
     private final ReservationRepository reservationRepository;
     private final RoomRepository roomRepository;
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-    @Scheduled(cron = "0 0 12 * * *") // 5 saniyede bir çalışır
+    @Scheduled(cron = "0 0 12 * * *") // Her gün saat 12:00'da çalışır.
     public void updateHotelStatus(){
         LocalDate today = LocalDate.now();
         List<Reservation> reservation = reservationRepository.findAll();
@@ -40,8 +40,9 @@ public class ScheduledTasks {
     private void scheduleRoomAvailabilityUpdate(Long roomId, int delayInMinutes) {
         scheduler.schedule(() -> markRoomAsAvailable(roomId), delayInMinutes, TimeUnit.MINUTES);
     }
+    // Business Rules
     private void markRoomAsAvailable(Long roomId) {
-        Room room = roomRepository.findById(roomId).orElseThrow(() -> new BusinessException("Room not found"));
+        Room room = roomRepository.findById(roomId).orElseThrow(() -> new BusinessException("Bu id'ye sahip bir kullanıcı bulunamadı."));
         room.setStatus(Status.AVAILABLE);
         roomRepository.save(room);
         System.out.println("Oda " + roomId + " AVAILABLE olarak güncellendi: " + LocalDateTime.now());

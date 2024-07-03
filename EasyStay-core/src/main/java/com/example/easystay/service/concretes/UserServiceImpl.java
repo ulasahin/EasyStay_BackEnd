@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service//Service olduğunu belirtmek için.
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
         user.setPhoneNumber(request.getPhoneNumber());
         user.setRole(request.getRole());
         emailShouldNotExist(request.getEmail());
+
         userRepository.save(user);
         AddUserResponse responses = new AddUserResponse();
         responses.setLastName(user.getLastName());
@@ -51,9 +52,12 @@ public class UserServiceImpl implements UserService {
     public UpdateUserResponse update(UpdateUserRequest request) {
         User user = userRepository.findById(request.getId()).orElseThrow(()
                 -> new BusinessException("Bu Id'ye sahip bir kullanıcı bulunmamıştır."));
+
         emailShouldNotExist(request.getEmail());
-        //UserMapper UpdateRequest'i id ile işlem yaptığı için 53 ve 53. satırlar böyle olmalı.
+
+        //UserMapper UpdateRequest'i id ile işlem yaptığı için 56. satır böyle olmalı.
         UserMapper.INSTANCE.userFromUpdateRequest(request,user);
+
         user = userRepository.save(user);
         UpdateUserResponse response = UserMapper.INSTANCE.userFromUpdateResponse(user);
         return response;
@@ -79,12 +83,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUsername(String email) {
         return userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + email));
+                .orElseThrow(() -> new UsernameNotFoundException("Şu e-postaya ait kullanıcı bulunamadı:" + email));
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-       return userRepository.findByEmail(username).orElseThrow();
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+       return userRepository.findByEmail(email).orElseThrow();
     }
 
     //Business Rules

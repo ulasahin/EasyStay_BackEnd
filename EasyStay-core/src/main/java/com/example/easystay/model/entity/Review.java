@@ -20,11 +20,13 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Temporal(TemporalType.DATE)
     private Date reviewDate;
 
     private int rating;
     private String reviewText;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

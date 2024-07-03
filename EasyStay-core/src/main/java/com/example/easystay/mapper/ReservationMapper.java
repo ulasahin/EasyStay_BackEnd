@@ -22,6 +22,7 @@ public interface ReservationMapper {
     @Mapping(target = "firstName",source = "user.firstName")
     @Mapping(target = "lastName",source = "user.lastName")
     AddReservationResponse reservationFromResponse(Reservation reservation);
+
     DeleteReservationResponse reservationFromDeleteResponse(Reservation reservation);
     GetResevationResponse reservationFromGetResponse(Reservation reservation);
 }

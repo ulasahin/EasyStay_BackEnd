@@ -21,6 +21,4 @@ public interface UserMapper {
     UpdateUserResponse userFromUpdateResponse(User user);
     DeleteUserResponse userFromDeleteResponse(User user);
     ListUserResponse userFromGetResponse(User user);
-
-
 }

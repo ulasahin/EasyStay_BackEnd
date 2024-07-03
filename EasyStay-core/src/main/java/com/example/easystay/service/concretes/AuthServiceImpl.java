@@ -53,15 +53,19 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public RegisterResponse register(RegisterRequest request) {
         User user = new User();
+
         emailShouldNotExist(request);
         passwordConfirmation(request);
+
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setPhoneNumber(request.getPhoneNumber());
         user.setRole(Role.CUSTOMER);
+
         userRepository.save(user);
+
         RegisterResponse response = AuthMapper.INSTANCE.responseFromRegisterResponse(user);
         return response;
     }

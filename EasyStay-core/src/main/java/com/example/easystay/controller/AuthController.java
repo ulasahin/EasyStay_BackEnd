@@ -14,15 +14,14 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthService authService;
-    //TODO : Validler eklencek
 
     @PostMapping("/login")
-    @ResponseStatus(HttpStatus.CREATED)
-    public String login(@RequestBody LoginRequest request){
+    @ResponseStatus(HttpStatus.OK)
+    public String login(@RequestBody @Valid LoginRequest request){
         return authService.login(request);
     }
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public RegisterResponse register(@RequestBody RegisterRequest request){return authService.register(request);
+    public RegisterResponse register(@RequestBody @Valid RegisterRequest request){return authService.register(request);
     }
 }

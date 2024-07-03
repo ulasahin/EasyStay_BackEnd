@@ -4,6 +4,7 @@ import com.example.easystay.core.report.loging.CrudEventListener;
 import com.example.easystay.model.enums.RoomType;
 import com.example.easystay.model.enums.Status;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,10 +24,13 @@ public class Room {
     private long id;
     private int roomNumber;
     private double price;
+
     @Enumerated(EnumType.STRING)
     private RoomType roomType;
+
     @Enumerated(EnumType.STRING)
     private Status status = Status.AVAILABLE;
+
     @OneToMany(mappedBy = "room")
     private List<Reservation> reservationList;
 
