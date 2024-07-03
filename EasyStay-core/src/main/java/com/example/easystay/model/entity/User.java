@@ -22,7 +22,9 @@ import java.util.List;
 @NoArgsConstructor
 @EntityListeners(CrudEventListener.class)//Loglama için gerekli.
 public class User implements UserDetails {
+    // Kolonun Foreign Key olmasını sağlar.
     @Id
+    // Verinin boş İd'lere yerleşmesini engeller.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String firstName;
@@ -30,11 +32,14 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private String phoneNumber;
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+
+    @Enumerated(EnumType.STRING)//Enum tipi String.
+    @Column(nullable = false)//Boş olamaz.
     private Role role;
+
     @OneToMany(mappedBy = "user")
     private List<Reservation> reservationList;
+
     @OneToMany(mappedBy = "user")
     private List<Review> reviewList;
 
@@ -63,9 +68,9 @@ public class User implements UserDetails {
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
     @Override
     public boolean isEnabled() {
         return true;
     }
+
 }

@@ -45,11 +45,14 @@ public class ReservationServiceImpl implements ReservationService {
         Room room = roomRepository.findById(request.getRoomId()).orElseThrow(()
                 -> new BusinessException("Böyle bir Id'ye sahip oda bulunamamıştır."));
         Reservation reservation = ReservationMapper.INSTANCE.reservationFromRequest(request);
+
         isRoomFull(room);
+
         reservation.setReservationStatus(ReservationStatus.PENDING);
         reservation.setUser(user);
         reservation.setRoom(room);
         room.setStatus(Status.OCCUPIED);
+
         reservation = reservationRepository.save(reservation);
         AddReservationResponse response = ReservationMapper.INSTANCE.reservationFromResponse(reservation);
         return response;
@@ -62,7 +65,7 @@ public class ReservationServiceImpl implements ReservationService {
         User user = userRepository.findByEmail(username).orElseThrow();
         Long userId = user.getId();
         List<Reservation> reservationList = reservationRepository.findByUserId(userId).stream().toList();
-        return   reservationList.stream().filter(r -> r.getReservationStatus()==ReservationStatus.APPROVED).map(r -> new ListMyReservationResponse(r.getTotalPrice())).toList();
+        return  reservationList.stream().filter(r -> r.getReservationStatus()==ReservationStatus.APPROVED).map(r -> new ListMyReservationResponse(r.getTotalPrice())).toList();
 
     }
 
@@ -88,7 +91,7 @@ public class ReservationServiceImpl implements ReservationService {
         if(reservation.getUser().getId()==user.getId()){
             reservation.setReservationStatus(ReservationStatus.CANCELLED);
             reservation.getRoom().setStatus(Status.AVAILABLE);
-            //Rolü admin olan tüm kullanıcılara mail yollar.
+
             sendAllAdminCancelMail(reservation,user);
             // Kullanıcının rezervasyon iptalinde yöneticiye ve kullanıcıya mail yoluyla bildirim atılması.
             emailService.sendEmailToUser("innvisionmanagement@gmail.com"
@@ -125,12 +128,18 @@ public class ReservationServiceImpl implements ReservationService {
             throw new BusinessException("Bu oda doludur.");
         }
     }
+    //Rolü admin olan tüm kullanıcılara mail yollar.
     public void sendAllAdminCancelMail(Reservation reservation, User user){
+        // User'ların sadece Admin rolüne sahip olanları bulur.
         List<User> users = userRepository.findAll().stream().filter(u-> u.getRole()== Role.ADMIN).toList();
+
+        // Admin rolüne sahip olanları mailini bulur.
         List<String> users1 = users.stream().map(u->u.getEmail()).toList();
+
+        // Tüm adminler için mail yollama işlemi yapar.
         for (String email : users1){
-            emailService.sendEmailToUser("innvisionmanagement@gmail.com"
-                    ,"Rezervasyon İptali","'"+user.getEmail()+"'"+" e-mail'e sahip kullanıcı "+"'"+reservation.getRoom().getRoomNumber()+"'"+" numaralı oda rezervasyonunu iptal etmiştir.");
+            emailService.sendEmailToUser(email,"Rezervasyon İptali"
+                    ,"'"+user.getEmail()+"'"+" e-mail'e sahip kullanıcı "+"'"+reservation.getRoom().getRoomNumber()+"'"+" numaralı oda rezervasyonunu iptal etmiştir.");
         }
     }
 }

@@ -26,11 +26,14 @@ public class Reservation {
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     private double totalPrice;
+
     @Enumerated(EnumType.STRING)
     private ReservationStatus reservationStatus;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
     @ManyToOne
     @JoinColumn(name = "room_id")
     private Room room;

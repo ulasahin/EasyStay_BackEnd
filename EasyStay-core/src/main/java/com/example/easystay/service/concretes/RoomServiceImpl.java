@@ -35,13 +35,17 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public AddRoomResponse add(AddRoomRequest request) {
         Room room = new Room();
+
         room.setRoomNumber(request.getRoomNumber());
         room.setPrice(request.getPrice());
         room.setStatus(request.getStatus());
         room.setRoomType(request.getRoomType());
         roomNumberShouldNotExist(request.getRoomNumber());
+
         roomRepository.save(room);
+
         AddRoomResponse addRoomResponse = new AddRoomResponse();
+
         addRoomResponse.setPrice(room.getPrice());
         addRoomResponse.setRoomNumber(request.getRoomNumber());
         return addRoomResponse;
@@ -54,7 +58,9 @@ public class RoomServiceImpl implements RoomService {
         room.setPrice(request.getPrice());
         room.setStatus(request.getStatus());
         room.setRoomType(request.getRoomType());
+
         roomNumberShouldNotExist(request.getRoomNumber());
+
         roomRepository.save(room);
         AddRoomResponse addRoomResponse = new AddRoomResponse();
         addRoomResponse.setPrice(room.getPrice());
