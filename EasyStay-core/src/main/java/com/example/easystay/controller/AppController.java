@@ -1,4 +1,4 @@
-package com.example.easystay.controller;
+"package com.example.easystay.controller;
 
 import com.example.easystay.service.dtos.requests.payment.Request;
 import jakarta.validation.Valid;
