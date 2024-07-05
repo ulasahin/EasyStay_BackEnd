@@ -19,15 +19,14 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public void addReview(AddReviewRequest request) {
-        Reservation reservation = reservationService.findById(request.getReservationId());
+
 
         //TODO: if token user is not reservation user throw an error!
 
         Review review = new Review();
-        review.setReviewDate(LocalDate.now());
         review.setReviewText(request.getReviewText());
         review.setRating(request.getRating());
-        review.setReservation(reservation);
+
 
         repository.save(review);
     }

@@ -8,6 +8,7 @@ import com.example.easystay.service.dtos.responses.reservation.*;
 import java.util.List;
 
 public interface ReservationService {
+
     List<ListReservationResponse> getAll();
     AddReservationResponse add(AddReservationRequest request);
     List<ListMyReservationResponse> getUserReservations();
