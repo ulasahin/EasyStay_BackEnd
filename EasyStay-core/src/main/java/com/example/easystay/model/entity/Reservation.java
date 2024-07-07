@@ -12,13 +12,13 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-@Entity(name = "reservations")
-@Table
+@Entity
+@Table(name = "reservations")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EntityListeners(CrudEventListener.class)//Loglama için gerekli.
+@EntityListeners(CrudEventListener.class)
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

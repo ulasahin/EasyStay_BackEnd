@@ -8,26 +8,26 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
-@Entity(name = "payments")
-@Table
+@Entity
+@Table(name = "payments")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EntityListeners(CrudEventListener.class)//Loglama için gerekli.
+@EntityListeners(CrudEventListener.class)
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    // Zaman verisinin gün tipinde saklanmasını sağlar.
+
     @Temporal(TemporalType.DATE)
     private Date paymentDate;
 
     private double paymentAmount;
     private String paymentMethod;
 
-    @ManyToOne(fetch = FetchType.LAZY)//İhtiyaç duyulduğunda yüklenmesini sağlar."fetch = FetchType.LAZY"
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reservation_id", nullable = false)
     private Reservation reservation;
 }

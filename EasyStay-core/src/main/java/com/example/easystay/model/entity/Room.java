@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
-@Entity(name = "rooms")
-@Table
+@Entity
+@Table(name = "rooms")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EntityListeners(CrudEventListener.class)//Loglama için gerekli.
+@EntityListeners(CrudEventListener.class)
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

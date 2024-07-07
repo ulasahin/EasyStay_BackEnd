@@ -14,17 +14,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@Entity(name = "users")
-@Table
+@Entity
+@Table(name = "users")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EntityListeners(CrudEventListener.class)//Loglama için gerekli.
+@EntityListeners(CrudEventListener.class)
 public class User implements UserDetails {
-    // Kolonun Foreign Key olmasını sağlar.
+
     @Id
-    // Verinin boş İd'lere yerleşmesini engeller.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String firstName;
@@ -33,8 +32,8 @@ public class User implements UserDetails {
     private String password;
     private String phoneNumber;
 
-    @Enumerated(EnumType.STRING)//Enum tipi String.
-    @Column(nullable = false)//Boş olamaz.
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Role role;
 
     @OneToMany(mappedBy = "user")

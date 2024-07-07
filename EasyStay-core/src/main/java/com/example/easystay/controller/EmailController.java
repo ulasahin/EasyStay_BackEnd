@@ -15,9 +15,8 @@ public class EmailController {
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public String sendEmail(@RequestParam String userEmail, @RequestParam String subject
+    public void sendEmail(@RequestParam String userEmail, @RequestParam String subject
             , @RequestParam String body) {
         emailService.sendEmailToUser(userEmail,subject,body);
-        return "Mail başarıyla şu E-mail'e gönderilmiştir : " + userEmail;
     }
 }

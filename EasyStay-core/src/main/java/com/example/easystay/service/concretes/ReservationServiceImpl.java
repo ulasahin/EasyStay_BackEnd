@@ -93,7 +93,7 @@ public class ReservationServiceImpl implements ReservationService {
             reservation.getRoom().setStatus(Status.AVAILABLE);
 
             sendAllAdminCancelMail(reservation,user);
-            // Kullanıcının rezervasyon iptalinde yöneticiye ve kullanıcıya mail yoluyla bildirim atılması.
+
             emailService.sendEmailToUser("innvisionmanagement@gmail.com"
                     ,"Rezervasyon İptali","'"+user.getEmail()+"'"+" e-mail'e sahip kullanıcı "+"'"+reservation.getRoom().getRoomNumber()+"'"+" numaralı oda rezervasyonunu iptal etmiştir.");
 
@@ -128,15 +128,12 @@ public class ReservationServiceImpl implements ReservationService {
             throw new BusinessException("Bu oda doludur.");
         }
     }
-    //Rolü admin olan tüm kullanıcılara mail yollar.
-    public void sendAllAdminCancelMail(Reservation reservation, User user){
-        // User'ların sadece Admin rolüne sahip olanları bulur.
-        List<User> users = userRepository.findAll().stream().filter(u-> u.getRole()== Role.ADMIN).toList();
 
-        // Admin rolüne sahip olanları mailini bulur.
+    public void sendAllAdminCancelMail(Reservation reservation, User user){
+
+        List<User> users = userRepository.findAll().stream().filter(u-> u.getRole()== Role.ADMIN).toList();
         List<String> users1 = users.stream().map(u->u.getEmail()).toList();
 
-        // Tüm adminler için mail yollama işlemi yapar.
         for (String email : users1){
             emailService.sendEmailToUser(email,"Rezervasyon İptali"
                     ,"'"+user.getEmail()+"'"+" e-mail'e sahip kullanıcı "+"'"+reservation.getRoom().getRoomNumber()+"'"+" numaralı oda rezervasyonunu iptal etmiştir.");

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CrudEventListener {
     private static final Logger logger = LoggerFactory.getLogger(CrudEventListener.class);
-    //CRUD İşlemlerinin loglarını yakalar.
+
 
     @PostPersist
     public void afterCreate(Object entity) {
