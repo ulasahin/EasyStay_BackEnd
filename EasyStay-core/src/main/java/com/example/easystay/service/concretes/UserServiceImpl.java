@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service//Service olduğunu belirtmek için.
+@Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
@@ -55,7 +55,6 @@ public class UserServiceImpl implements UserService {
 
         emailShouldNotExist(request.getEmail());
 
-        //UserMapper UpdateRequest'i id ile işlem yaptığı için 56. satır böyle olmalı.
         UserMapper.INSTANCE.userFromUpdateRequest(request,user);
 
         user = userRepository.save(user);

@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("logs")
 public class LogController {
-    //Logları almak için gerekli log controller.
+
     @GetMapping
     public List<String> getLogs() throws IOException {
 

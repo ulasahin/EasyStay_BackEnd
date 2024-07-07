@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmailService {
-    @Autowired //@Autowired anotasyonu, Spring Framework'de bağımlılıkları otomatik olarak enjekte etmek için kullanılır.
-    private JavaMailSender mailSender;
-    @Autowired
-    private UserRepository userRepository; //User'daki mail'i alacağından repoyu çağırdık.
 
-    @Value("${email.default}") //Sistemin defult mailini alır.
+    private JavaMailSender mailSender;
+
+    private UserRepository userRepository;
+
+    @Value("${email.default}")
     private String EMAIL;
 
     public void sendEmailToUser(String userEmail,String subject,String body) {
@@ -25,13 +25,12 @@ public class EmailService {
 
         if (user != null) {
             SimpleMailMessage message = new SimpleMailMessage();
-            //  SimpleMailMessage içindeki metodları çağırdık.
+
             message.setTo(user.getEmail());
             message.setSubject(subject);
             message.setText(body);
             message.setFrom(EMAIL);
 
-            //Maili gönderdik.
             mailSender.send(message);
         }
     }
