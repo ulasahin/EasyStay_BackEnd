@@ -1,6 +1,6 @@
 package com.example.easystay.model.entity;
 
-import com.example.easystay.core.report.loging.CrudEventListener;
+import com.example.easystay.core.report.log.CrudEventListener;
 import com.example.easystay.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -50,25 +50,30 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
+
         return email;
     }
 
     @Override
     public boolean isAccountNonExpired() {
+
         return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
+
         return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
+
         return true;
     }
     @Override
     public boolean isEnabled() {
+
         return true;
     }
 

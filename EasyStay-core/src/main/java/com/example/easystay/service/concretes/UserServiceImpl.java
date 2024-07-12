@@ -12,6 +12,7 @@ import com.example.easystay.service.dtos.responses.user.DeleteUserResponse;
 import com.example.easystay.service.dtos.responses.user.ListUserResponse;
 import com.example.easystay.service.dtos.requests.user.AddUserRequest;
 import com.example.easystay.service.dtos.responses.user.UpdateUserResponse;
+import com.example.easystay.service.rules.UserBusinessRule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,6 +25,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final UserBusinessRule userBusinessRule;
 
     @Override
     public List<ListUserResponse> getAll() {
@@ -40,7 +42,7 @@ public class UserServiceImpl implements UserService {
         user.setLastName(request.getLastName());
         user.setPhoneNumber(request.getPhoneNumber());
         user.setRole(request.getRole());
-        emailShouldNotExist(request.getEmail());
+        userBusinessRule.emailShouldNotExist(request.getEmail());
 
         userRepository.save(user);
         AddUserResponse responses = new AddUserResponse();
@@ -53,7 +55,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(request.getId()).orElseThrow(()
                 -> new BusinessException("Bu Id'ye sahip bir kullanıcı bulunmamıştır."));
 
-        emailShouldNotExist(request.getEmail());
+        userBusinessRule.emailShouldNotExist(request.getEmail());
 
         UserMapper.INSTANCE.userFromUpdateRequest(request,user);
 
@@ -88,13 +90,5 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
        return userRepository.findByEmail(email).orElseThrow();
-    }
-
-    //Business Rules
-    private void emailShouldNotExist(String email){
-        Optional<User> user = userRepository.findByEmail(email);
-        if(user.isPresent()){
-            throw new BusinessException("Böyle bir email mevcut");
-        }
     }
 }

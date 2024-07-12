@@ -1,14 +1,10 @@
-package com.example.easystay.core.report.loging;
+package com.example.easystay.core.report.log;
 
 import jakarta.persistence.PostPersist;
 import jakarta.persistence.PostRemove;
 import jakarta.persistence.PostUpdate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.event.EventListener;
-import org.springframework.data.rest.core.event.AfterCreateEvent;
-import org.springframework.data.rest.core.event.AfterDeleteEvent;
-import org.springframework.data.rest.core.event.AfterSaveEvent;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -29,11 +29,8 @@ public class RoomController {
 
     @GetMapping("ByRoomType")
     @ResponseStatus(HttpStatus.OK)
-    private List<ListRoomResponse> getRoomType(@RequestParam RoomType roomType){
-
-        return roomService.findByRoomType(roomType);
+    private List<ListRoomResponse> getRoomType(@RequestParam RoomType roomType){return roomService.findByRoomType(roomType);
     }
-
     @PostMapping("addRoom")
     @ResponseStatus(HttpStatus.CREATED)
     private AddRoomResponse add(AddRoomRequest request){

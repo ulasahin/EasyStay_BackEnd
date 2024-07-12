@@ -1,10 +1,9 @@
 package com.example.easystay.model.entity;
 
-import com.example.easystay.core.report.loging.CrudEventListener;
+import com.example.easystay.core.report.log.CrudEventListener;
 import com.example.easystay.model.enums.RoomType;
 import com.example.easystay.model.enums.Status;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
