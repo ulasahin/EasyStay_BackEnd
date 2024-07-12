@@ -1,6 +1,6 @@
 package com.example.easystay.model.entity;
 
-import com.example.easystay.core.report.loging.CrudEventListener;
+import com.example.easystay.core.report.log.CrudEventListener;
 import com.example.easystay.model.enums.ReservationStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "reservations")

@@ -1,6 +1,6 @@
 package com.example.easystay.model.entity;
 
-import com.example.easystay.core.report.loging.CrudEventListener;
+import com.example.easystay.core.report.log.CrudEventListener;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

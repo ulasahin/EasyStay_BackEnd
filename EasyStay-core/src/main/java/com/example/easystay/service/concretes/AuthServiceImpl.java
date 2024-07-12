@@ -1,7 +1,6 @@
 package com.example.easystay.service.concretes;
 
 import com.example.easystay.core.exceptionhandling.exception.types.BusinessException;
-import com.example.easystay.core.report.loging.CrudEventListener;
 import com.example.easystay.core.security.service.JwtService;
 import com.example.easystay.mapper.AuthMapper;
 import com.example.easystay.model.enums.Role;
@@ -11,7 +10,7 @@ import com.example.easystay.service.abstracts.AuthService;
 import com.example.easystay.service.dtos.requests.auth.LoginRequest;
 import com.example.easystay.service.dtos.requests.auth.RegisterRequest;
 import com.example.easystay.service.dtos.responses.auth.RegisterResponse;
-import jakarta.persistence.EntityListeners;
+import com.example.easystay.service.rules.UserBusinessRule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,6 +29,7 @@ public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
+    private final UserBusinessRule userBusinessRule;
 
     @Override
     public String login(LoginRequest request) {
@@ -54,8 +54,8 @@ public class AuthServiceImpl implements AuthService {
     public RegisterResponse register(RegisterRequest request) {
         User user = new User();
 
-        emailShouldNotExist(request);
-        passwordConfirmation(request);
+        userBusinessRule.emailShouldNotExist(request.getEmail());
+        userBusinessRule.passwordConfirmation(request);
 
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
@@ -68,17 +68,5 @@ public class AuthServiceImpl implements AuthService {
 
         RegisterResponse response = AuthMapper.INSTANCE.responseFromRegisterResponse(user);
         return response;
-    }
-    //Business Rules
-    private void passwordConfirmation(RegisterRequest request){
-        if (!(request.getPassword().equals(request.getPasswordConfirm()))){
-            throw new BusinessException("Şifreler aynı değil.");
-        }
-    }
-    private void emailShouldNotExist(RegisterRequest request){
-        Optional<User> user = userRepository.findByEmail(request.getEmail());
-        if (user.isPresent()){
-            throw new BusinessException("Böyle bir e-mail zaten bulunmaktatır. Başka bir e-mail deneyiniz.");
-        }
     }
 }

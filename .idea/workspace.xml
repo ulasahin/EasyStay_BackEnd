@@ -4,15 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe4cf81-63e7-47ed-aac5-6c35442c34ad" name="Changes" comment="X">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="dbe4cf81-63e7-47ed-aac5-6c35442c34ad" name="Changes" comment="Edit">
+      <change afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/service/rules/EmailBusinessRule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/controller/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/service/abstracts/HotelService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/service/abstracts/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/service/abstracts/ReservationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/service/concretes/ReviewServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/service/concretes/ReviewServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/controller/RoomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/core/mail/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/core/mail/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/mapper/AuthMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/mapper/AuthMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/model/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/model/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/repository/RoomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/repository/RoomRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/service/concretes/RoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/service/concretes/RoomServiceImpl.java" afterDir="false" />
     </list>
-    <list id="2e482f10-ef9b-4019-a5fd-5ddcfc24f3bf" name="bosslar" comment="bosslar" />
+    <list id="d8a98131-a6a3-4116-8bfe-b0dae3c2b1c0" name="Not Commit" comment="">
+      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,8 +31,8 @@
         <option value="package-info" />
         <option value="JavaScript File" />
         <option value="HTML File" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -38,6 +44,28 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ulasahin&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/hazartamer/EasyStay.git&quot;,
+    &quot;accountId&quot;: &quot;2416987f-478d-4a79-9f27-71b308047e36&quot;
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;hazartamer&quot;,
+    &quot;repository&quot;: &quot;EasyStay&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -52,37 +80,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "hazar",
-    "last_opened_file_path": "C:/Users/hazar/Dev/yzl3512/EasyStay/EasyStay-core",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "spring.configuration.checksum": "6f13edac1bc6dc1da1cb668e243e80f1",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Run.executor&quot;: &quot;Run&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ulas&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/hazar/Dev/yzl3512/EasyStay/EasyStay-core&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;6f13edac1bc6dc1da1cb668e243e80f1&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager">
+}</component>
+  <component name="RunManager" selected="Application.Run">
+    <configuration name="Run" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.example.easystay.EasyStayApplication" />
+      <module name="EasyStay" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="main" />
       <method v="2">
@@ -104,12 +141,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Run" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="dbe4cf81-63e7-47ed-aac5-6c35442c34ad" name="Changes" comment="" />
-      <changelist id="2e482f10-ef9b-4019-a5fd-5ddcfc24f3bf" name="bosslar" comment="" />
+      <changelist id="d8a98131-a6a3-4116-8bfe-b0dae3c2b1c0" name="Not Commit" comment="" />
       <created>1716894601490</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -228,7 +268,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720184144402</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Edit">
+      <option name="closed" value="true" />
+      <created>1720322647350</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1720322647350</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,7 +299,8 @@
     <MESSAGE value="kullanıcı eğer rezervasyonunu iptal etmek isterse bu işlemi gerçekleştirebileceği bir http put işlemi gerçekleştirildi." />
     <MESSAGE value="ScheduledTask eklendi&#10;-@Scheduled anatasyonu ilk defa kullandık&#10;-Misafir çıkış yaptığında otomatik olarak 'cleaning' olarak set edildi ve 30 dakikanın ardından 'available' olarak güncellendi" />
     <MESSAGE value="X" />
-    <option name="LAST_COMMIT_MESSAGE" value="X" />
+    <MESSAGE value="Edit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Edit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

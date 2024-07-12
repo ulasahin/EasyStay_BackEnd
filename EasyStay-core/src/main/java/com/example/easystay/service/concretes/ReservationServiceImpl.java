@@ -7,7 +7,6 @@ import com.example.easystay.model.entity.Reservation;
 import com.example.easystay.model.entity.Room;
 import com.example.easystay.model.entity.User;
 import com.example.easystay.model.enums.ReservationStatus;
-import com.example.easystay.model.enums.Role;
 import com.example.easystay.model.enums.Status;
 import com.example.easystay.repository.ReservationRepository;
 import com.example.easystay.repository.RoomRepository;
@@ -16,13 +15,14 @@ import com.example.easystay.service.abstracts.ReservationService;
 import com.example.easystay.service.dtos.requests.reservation.AddReservationRequest;
 import com.example.easystay.service.dtos.requests.reservation.UpdateReservationRequest;
 import com.example.easystay.service.dtos.responses.reservation.*;
+import com.example.easystay.service.rules.EmailBusinessRule;
+import com.example.easystay.service.rules.ReservationBusinessRule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -31,6 +31,8 @@ public class ReservationServiceImpl implements ReservationService {
     private final RoomRepository roomRepository;
     private final ReservationRepository reservationRepository;
     private final EmailService emailService;
+    private final ReservationBusinessRule reservationBusinessRule;
+    private final EmailBusinessRule emailBusinessRule;
 
     @Override
     public List<ListReservationResponse> getAll() {
@@ -46,7 +48,7 @@ public class ReservationServiceImpl implements ReservationService {
                 -> new BusinessException("Böyle bir Id'ye sahip oda bulunamamıştır."));
         Reservation reservation = ReservationMapper.INSTANCE.reservationFromRequest(request);
 
-        isRoomFull(room);
+        reservationBusinessRule.isRoomFull(room);
 
         reservation.setReservationStatus(ReservationStatus.PENDING);
         reservation.setUser(user);
@@ -92,7 +94,7 @@ public class ReservationServiceImpl implements ReservationService {
             reservation.setReservationStatus(ReservationStatus.CANCELLED);
             reservation.getRoom().setStatus(Status.AVAILABLE);
 
-            sendAllAdminCancelMail(reservation,user);
+            emailBusinessRule.sendAllAdminCancelMail(reservation,user);
 
             emailService.sendEmailToUser("innvisionmanagement@gmail.com"
                     ,"Rezervasyon İptali","'"+user.getEmail()+"'"+" e-mail'e sahip kullanıcı "+"'"+reservation.getRoom().getRoomNumber()+"'"+" numaralı oda rezervasyonunu iptal etmiştir.");
@@ -120,23 +122,5 @@ public class ReservationServiceImpl implements ReservationService {
                 -> new BusinessException("Böyle bir Id'ye sahip rezervasyon bulunamadı."));
         GetResevationResponse response = ReservationMapper.INSTANCE.reservationFromGetResponse(reservation);
         return response;
-    }
-
-    //Business Rules
-    public void isRoomFull(Room room){
-        if(room.getStatus()== Status.OCCUPIED){
-            throw new BusinessException("Bu oda doludur.");
-        }
-    }
-
-    public void sendAllAdminCancelMail(Reservation reservation, User user){
-
-        List<User> users = userRepository.findAll().stream().filter(u-> u.getRole()== Role.ADMIN).toList();
-        List<String> users1 = users.stream().map(u->u.getEmail()).toList();
-
-        for (String email : users1){
-            emailService.sendEmailToUser(email,"Rezervasyon İptali"
-                    ,"'"+user.getEmail()+"'"+" e-mail'e sahip kullanıcı "+"'"+reservation.getRoom().getRoomNumber()+"'"+" numaralı oda rezervasyonunu iptal etmiştir.");
-        }
     }
 }

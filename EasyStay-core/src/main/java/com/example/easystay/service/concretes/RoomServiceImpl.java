@@ -1,6 +1,7 @@
 package com.example.easystay.service.concretes;
 
 import com.example.easystay.core.exceptionhandling.exception.types.BusinessException;
+import com.example.easystay.core.mail.EmailService;
 import com.example.easystay.mapper.RoomMapper;
 import com.example.easystay.model.entity.Room;
 import com.example.easystay.model.entity.User;
@@ -14,6 +15,7 @@ import com.example.easystay.service.dtos.responses.room.AddRoomResponse;
 import com.example.easystay.service.dtos.responses.room.DeleteRoomResponse;
 import com.example.easystay.service.dtos.responses.room.GetRoomResponse;
 import com.example.easystay.service.dtos.responses.room.ListRoomResponse;
+import com.example.easystay.service.rules.RoomBusinessRule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +26,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class RoomServiceImpl implements RoomService {
     private final RoomRepository roomRepository;
-    private final UserRepository repository;
+    private final UserRepository userRepository;
+    private final EmailService emailService;
+    private final RoomBusinessRule roomBusinessRule;
 
     @Override
     public List<ListRoomResponse> getAll() {
@@ -40,9 +44,10 @@ public class RoomServiceImpl implements RoomService {
         room.setPrice(request.getPrice());
         room.setStatus(request.getStatus());
         room.setRoomType(request.getRoomType());
-        roomNumberShouldNotExist(request.getRoomNumber());
+        roomBusinessRule.roomNumberShouldNotExist(request.getRoomNumber());
 
         roomRepository.save(room);
+        emailService.sendEmailToUser("innvisionmanagement@gmail.com","bla","bla");
 
         AddRoomResponse addRoomResponse = new AddRoomResponse();
 
@@ -59,7 +64,7 @@ public class RoomServiceImpl implements RoomService {
         room.setStatus(request.getStatus());
         room.setRoomType(request.getRoomType());
 
-        roomNumberShouldNotExist(request.getRoomNumber());
+        roomBusinessRule.roomNumberShouldNotExist(request.getRoomNumber());
 
         roomRepository.save(room);
         AddRoomResponse addRoomResponse = new AddRoomResponse();
@@ -89,13 +94,5 @@ public class RoomServiceImpl implements RoomService {
     public List<ListRoomResponse> findByRoomType(RoomType roomType) {
         List<Room> rooms = roomRepository.findByRoomType(roomType);
         return rooms.stream().map(r -> new ListRoomResponse(r.getRoomNumber(),r.getPrice())).toList() ;
-    }
-
-    //Business Rules
-    private void roomNumberShouldNotExist(int roomNumber){
-        Optional<Room> room = roomRepository.findByRoomNumber(roomNumber);
-        if (room.isPresent()){
-            throw new BusinessException("Böyle bir oda numarasına sahip oda bulunmaktadır.");
-        }
     }
 }
