@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe4cf81-63e7-47ed-aac5-6c35442c34ad" name="Changes" comment="Edit">
-      <change afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/service/rules/EmailBusinessRule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="dbe4cf81-63e7-47ed-aac5-6c35442c34ad" name="Changes" comment="Edit Business Rules,">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/controller/RoomController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/core/mail/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/core/mail/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/mapper/AuthMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/mapper/AuthMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/model/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/model/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/repository/RoomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/repository/RoomRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/service/concretes/RoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/service/concretes/RoomServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/core/security/service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/core/security/service/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/service/concretes/ReservationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/service/concretes/ReservationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/service/rules/EmailBusinessRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/java/com/example/easystay/service/rules/EmailBusinessRule.java" afterDir="false" />
     </list>
     <list id="d8a98131-a6a3-4116-8bfe-b0dae3c2b1c0" name="Not Commit" comment="">
       <change beforePath="$PROJECT_DIR$/EasyStay-core/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/EasyStay-core/src/main/resources/application.properties" afterDir="false" />
@@ -276,7 +271,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720322647350</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Edit Business Rules,">
+      <option name="closed" value="true" />
+      <created>1720798061513</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1720798061513</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,7 +303,8 @@
     <MESSAGE value="ScheduledTask eklendi&#10;-@Scheduled anatasyonu ilk defa kullandık&#10;-Misafir çıkış yaptığında otomatik olarak 'cleaning' olarak set edildi ve 30 dakikanın ardından 'available' olarak güncellendi" />
     <MESSAGE value="X" />
     <MESSAGE value="Edit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edit" />
+    <MESSAGE value="Edit Business Rules," />
+    <option name="LAST_COMMIT_MESSAGE" value="Edit Business Rules," />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
