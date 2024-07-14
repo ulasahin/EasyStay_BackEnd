@@ -7,6 +7,7 @@ import com.example.easystay.model.entity.Reservation;
 import com.example.easystay.model.entity.Room;
 import com.example.easystay.model.entity.User;
 import com.example.easystay.model.enums.ReservationStatus;
+import com.example.easystay.model.enums.Role;
 import com.example.easystay.model.enums.Status;
 import com.example.easystay.repository.ReservationRepository;
 import com.example.easystay.repository.RoomRepository;
@@ -90,12 +91,19 @@ public class ReservationServiceImpl implements ReservationService {
         String username = authentication.getName();
         User user = userRepository.findByEmail(username).orElseThrow();
         Reservation reservation = reservationRepository.findById(id).orElseThrow();
+
         if(reservation.getUser().getId()==user.getId()){
             reservation.setReservationStatus(ReservationStatus.CANCELLED);
             reservation.getRoom().setStatus(Status.AVAILABLE);
 
-            emailBusinessRule.sendAllAdminCancelMail(reservation,user);
+            List<User> users = userRepository.findAll().stream().filter(u->
+                    u.getRole()== Role.ADMIN).toList();
+            List<String> users1 = users.stream().map(u->u.getEmail()).toList();
 
+            for (String email : users1){
+                emailService.sendEmailToUser(email,"Rezervasyon İptali"
+                        ,"'"+user.getEmail()+"'"+" e-mail'e sahip kullanıcı "+"'"+reservation.getRoom().getRoomNumber()+"'"+" numaralı oda rezervasyonunu iptal etmiştir.");
+            }
             emailService.sendEmailToUser("innvisionmanagement@gmail.com"
                     ,"Rezervasyon İptali","'"+user.getEmail()+"'"+" e-mail'e sahip kullanıcı "+"'"+reservation.getRoom().getRoomNumber()+"'"+" numaralı oda rezervasyonunu iptal etmiştir.");
 
