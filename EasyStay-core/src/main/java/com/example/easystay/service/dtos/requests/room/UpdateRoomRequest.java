@@ -1,7 +1,7 @@
 package com.example.easystay.service.dtos.requests.room;
 
 import com.example.easystay.model.enums.RoomType;
-import com.example.easystay.model.enums.Status;
+import com.example.easystay.model.enums.RoomStatus;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,5 +22,5 @@ public class UpdateRoomRequest {
 
     private RoomType roomType;
 
-    private Status status;
+    private RoomStatus status;
 }

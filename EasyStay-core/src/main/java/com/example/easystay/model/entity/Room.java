@@ -2,7 +2,7 @@ package com.example.easystay.model.entity;
 
 import com.example.easystay.core.report.log.CrudEventListener;
 import com.example.easystay.model.enums.RoomType;
-import com.example.easystay.model.enums.Status;
+import com.example.easystay.model.enums.RoomStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,7 +28,7 @@ public class Room {
     private RoomType roomType;
 
     @Enumerated(EnumType.STRING)
-    private Status status = Status.AVAILABLE;
+    private RoomStatus status = RoomStatus.AVAILABLE;
 
     @OneToMany(mappedBy = "room")
     private List<Reservation> reservationList;
