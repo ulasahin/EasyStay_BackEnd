@@ -3,7 +3,7 @@ package com.example.easystay.core.tasks;
 import com.example.easystay.core.exceptionhandling.exception.types.BusinessException;
 import com.example.easystay.model.entity.Reservation;
 import com.example.easystay.model.entity.Room;
-import com.example.easystay.model.enums.Status;
+import com.example.easystay.model.enums.RoomStatus;
 import com.example.easystay.repository.ReservationRepository;
 import com.example.easystay.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ public class ScheduledTasks {
         for(Reservation reservation1 : reservation){
             if(reservation1.getCheckOutDate().isAfter(today)){
                 Room room = reservation1.getRoom();
-                room.setStatus(Status.CLEANING);
+                room.setStatus(RoomStatus.CLEANING);
                 roomRepository.save(room);
                 scheduleRoomAvailabilityUpdate(room.getId(),30);
             }
@@ -43,7 +43,7 @@ public class ScheduledTasks {
     // Business Rules
     private void markRoomAsAvailable(Long roomId) {
         Room room = roomRepository.findById(roomId).orElseThrow(() -> new BusinessException("Bu id'ye sahip bir kullanıcı bulunamadı."));
-        room.setStatus(Status.AVAILABLE);
+        room.setStatus(RoomStatus.AVAILABLE);
         roomRepository.save(room);
         System.out.println("Oda " + roomId + " AVAILABLE olarak güncellendi: " + LocalDateTime.now());
     }

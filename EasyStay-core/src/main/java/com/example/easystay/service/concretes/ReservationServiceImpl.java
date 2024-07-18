@@ -8,7 +8,7 @@ import com.example.easystay.model.entity.Room;
 import com.example.easystay.model.entity.User;
 import com.example.easystay.model.enums.ReservationStatus;
 import com.example.easystay.model.enums.Role;
-import com.example.easystay.model.enums.Status;
+import com.example.easystay.model.enums.RoomStatus;
 import com.example.easystay.repository.ReservationRepository;
 import com.example.easystay.repository.RoomRepository;
 import com.example.easystay.repository.UserRepository;
@@ -33,7 +33,6 @@ public class ReservationServiceImpl implements ReservationService {
     private final ReservationRepository reservationRepository;
     private final EmailService emailService;
     private final ReservationBusinessRule reservationBusinessRule;
-    private final EmailBusinessRule emailBusinessRule;
 
     @Override
     public List<ListReservationResponse> getAll() {
@@ -54,7 +53,7 @@ public class ReservationServiceImpl implements ReservationService {
         reservation.setReservationStatus(ReservationStatus.PENDING);
         reservation.setUser(user);
         reservation.setRoom(room);
-        room.setStatus(Status.OCCUPIED);
+        room.setStatus(RoomStatus.OCCUPIED);
 
         reservation = reservationRepository.save(reservation);
         AddReservationResponse response = ReservationMapper.INSTANCE.reservationFromResponse(reservation);
@@ -94,7 +93,7 @@ public class ReservationServiceImpl implements ReservationService {
 
         if(reservation.getUser().getId()==user.getId()){
             reservation.setReservationStatus(ReservationStatus.CANCELLED);
-            reservation.getRoom().setStatus(Status.AVAILABLE);
+            reservation.getRoom().setStatus(RoomStatus.AVAILABLE);
 
             List<User> users = userRepository.findAll().stream().filter(u->
                     u.getRole()== Role.ADMIN).toList();

@@ -1,7 +1,7 @@
 package com.example.easystay.service.dtos.requests.room;
 
 import com.example.easystay.model.enums.RoomType;
-import com.example.easystay.model.enums.Status;
+import com.example.easystay.model.enums.RoomStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -23,7 +23,7 @@ public class AddRoomRequest {
     private double price;
 
     @NotBlank(message = "Durum kısmı boş olamaz.")
-    private Status status;
+    private RoomStatus status;
 
     @NotBlank(message = "Oda tipi boş olamaz.")
     private RoomType roomType;
