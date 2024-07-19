@@ -14,8 +14,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoginRequest {
-    @NotBlank(message = ErrorMessages.NOT_BLANK_EMAİL)
-    @Email(message = ErrorMessages.INVALİD_EMAİL)
+    @NotBlank(message = ErrorMessages.NOT_BLANK_EMAIL)
+    @Email(message = ErrorMessages.INVALID_EMAIL)
     private String email;
 
     @NotBlank(message = ErrorMessages.NOT_BLANK_PASS)

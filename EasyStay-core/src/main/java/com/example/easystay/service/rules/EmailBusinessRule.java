@@ -27,7 +27,7 @@ public class EmailBusinessRule {
 
     public void findEmailAndSend(String userEmail,String subject,String body){
         User user = userRepository.findByEmail(userEmail).orElseThrow(
-                ()-> new BusinessException(ErrorMessages.EMAİL_NOT_FOUND));
+                ()-> new BusinessException(ErrorMessages.EMAIL_NOT_FOUND));
         if(user != null){
             SimpleMailMessage message = new SimpleMailMessage();
 

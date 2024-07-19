@@ -19,7 +19,7 @@ public class UserBusinessRule {
     public void emailShouldNotExist(String email){
         Optional<User> user = userRepository.findByEmail(email);
         if(user.isPresent()){
-            throw new BusinessException(ErrorMessages.EMAİL_USED);
+            throw new BusinessException(ErrorMessages.EMAIL_USED);
         }
     }
     public void passwordConfirmation(RegisterRequest request){
@@ -29,7 +29,7 @@ public class UserBusinessRule {
     }
     public void authentication(Authentication authentication){
         if(!authentication.isAuthenticated()){
-            throw new BusinessException(ErrorMessages.INVALID_PASS_EMAİL);
+            throw new BusinessException(ErrorMessages.INVALID_PASS_EMAIL);
         }
     }
 }

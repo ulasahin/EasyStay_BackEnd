@@ -17,15 +17,15 @@ import lombok.Setter;
 public class RegisterRequest {
 
     @NotBlank(message = ErrorMessages.NOT_BLANK_FIRST_NAME)
-    @Size(min=3,max = 50,message = ErrorMessages.FİRST_NAME_SIZE_3_50)
+    @Size(min=3,max = 50,message = ErrorMessages.FIRST_NAME_SIZE_3_50)
     private String firstName;
 
     @NotBlank(message = ErrorMessages.NOT_BLANK_LAST_NAME)
     @Size(min=3,max = 50,message = ErrorMessages.LAST_NAME_SIZE_3_50)
     private String lastName;
 
-    @NotBlank(message = ErrorMessages.INVALİD_EMAİL)
-    @Email(message = ErrorMessages.INVALİD_EMAİL)
+    @NotBlank(message = ErrorMessages.INVALID_EMAIL)
+    @Email(message = ErrorMessages.INVALID_EMAIL)
     private String email;
 
     @NotBlank(message = ErrorMessages.NOT_BLANK_PASS)

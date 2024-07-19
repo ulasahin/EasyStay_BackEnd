@@ -6,7 +6,6 @@ import com.example.easystay.mapper.UserMapper;
 import com.example.easystay.model.entity.User;
 import com.example.easystay.repository.UserRepository;
 import com.example.easystay.service.abstracts.UserService;
-import com.example.easystay.service.dtos.requests.auth.RegisterRequest;
 import com.example.easystay.service.dtos.requests.user.UpdateUserRequest;
 import com.example.easystay.service.dtos.responses.user.AddUserResponse;
 import com.example.easystay.service.dtos.responses.user.DeleteUserResponse;
@@ -20,7 +19,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -85,7 +83,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUsername(String email) {
         return userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException(ErrorMessages.USER_NOT_FOUND_FOR_EMAİL + email));
+                .orElseThrow(() -> new UsernameNotFoundException(ErrorMessages.USER_NOT_FOUND_FOR_EMAIL + email));
     }
 
     @Override

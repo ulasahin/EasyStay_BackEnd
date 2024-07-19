@@ -112,7 +112,7 @@ public class ReservationServiceImpl implements ReservationService {
             reservationRepository.save(reservation);
         }
         else {
-            throw new BusinessException(ErrorMessages.RESEVR_NOT_EXİST);
+            throw new BusinessException(ErrorMessages.RESEVR_NOT_EXIST);
         }
     }
 

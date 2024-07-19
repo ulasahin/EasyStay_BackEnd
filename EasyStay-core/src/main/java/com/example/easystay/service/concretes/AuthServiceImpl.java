@@ -35,7 +35,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public String login(LoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail()).orElseThrow(()
-                -> new BusinessException(ErrorMessages.EMAİL_NOT_FOUND));
+                -> new BusinessException(ErrorMessages.EMAIL_NOT_FOUND));
 
         Authentication authentication =
         authenticationManager.authenticate(

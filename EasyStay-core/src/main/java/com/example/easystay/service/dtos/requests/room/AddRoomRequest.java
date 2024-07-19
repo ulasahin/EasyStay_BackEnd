@@ -16,11 +16,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AddRoomRequest {
     @NotBlank(message = ErrorMessages.NOT_BLANK_ROOM_NUMBER)
-    @Pattern(regexp = "\\d+",message = ErrorMessages.JUST_NUMERİC_CHAR_FOR_ROOM_NUMBER)
+    @Pattern(regexp = "\\d+",message = ErrorMessages.JUST_NUMERIC_CHAR_FOR_ROOM_NUMBER)
     private int roomNumber;
 
     @NotBlank(message = ErrorMessages.NOT_BLANK_ROOM_PRİCE)
-    @Pattern(regexp = "\\d+",message = ErrorMessages.JUST_NUMERİC_CHAR_FOR_ROOM_PRİCE)
+    @Pattern(regexp = "\\d+",message = ErrorMessages.JUST_NUMERIC_CHAR_FOR_ROOM_PRICE)
     private double price;
 
     @NotBlank(message = ErrorMessages.NOT_BLANK_ROOM_STATUS)
