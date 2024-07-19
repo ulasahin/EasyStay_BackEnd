@@ -1,5 +1,6 @@
 package com.example.easystay.service.concretes;
 
+import com.example.easystay.core.exceptionhandling.exception.problemdetails.ErrorMessages;
 import com.example.easystay.core.exceptionhandling.exception.types.BusinessException;
 import com.example.easystay.core.mail.EmailService;
 import com.example.easystay.mapper.RoomMapper;
@@ -26,8 +27,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class RoomServiceImpl implements RoomService {
     private final RoomRepository roomRepository;
-    private final UserRepository userRepository;
-    private final EmailService emailService;
     private final RoomBusinessRule roomBusinessRule;
 
     @Override
@@ -47,7 +46,6 @@ public class RoomServiceImpl implements RoomService {
         roomBusinessRule.roomNumberShouldNotExist(request.getRoomNumber());
 
         roomRepository.save(room);
-        emailService.sendEmailToUser("innvisionmanagement@gmail.com","bla","bla");
 
         AddRoomResponse addRoomResponse = new AddRoomResponse();
 
@@ -58,7 +56,7 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public AddRoomResponse update(UpdateRoomRequest request) {
         Room room = roomRepository.findById(request.getId()).orElseThrow(()
-                -> new BusinessException("Oda bulunamamıştır."));
+                -> new BusinessException(ErrorMessages.ROOM_NOT_FOUND));
         room.setRoomNumber(request.getRoomNumber());
         room.setPrice(request.getPrice());
         room.setStatus(request.getStatus());
@@ -76,7 +74,7 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public DeleteRoomResponse delete(long id) {
         Room room = roomRepository.findById(id).orElseThrow(()
-                -> new BusinessException("Bu Id'e sahip bir oda bulunamadı."));
+                -> new BusinessException(ErrorMessages.ROOM_NOT_FOUND));
         DeleteRoomResponse response = RoomMapper.INSTANCE.roomFromDeleteResponse(room);
         roomRepository.delete(room);
         return response;
@@ -85,7 +83,7 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public GetRoomResponse getById(long id) {
         Room room = roomRepository.findById(id).orElseThrow(()
-                -> new BusinessException("Böyle bir Id'ye sahip oda bulunamamıştır."));
+                -> new BusinessException(ErrorMessages.ROOM_NOT_FOUND));
         GetRoomResponse response = RoomMapper.INSTANCE.roomFromGetResponse(room);
         return response;
     }

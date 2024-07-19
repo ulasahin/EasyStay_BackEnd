@@ -1,5 +1,6 @@
 package com.example.easystay.service.concretes;
 
+import com.example.easystay.core.exceptionhandling.exception.problemdetails.ErrorMessages;
 import com.example.easystay.core.exceptionhandling.exception.types.BusinessException;
 import com.example.easystay.core.security.service.JwtService;
 import com.example.easystay.mapper.AuthMapper;
@@ -34,14 +35,13 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public String login(LoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail()).orElseThrow(()
-                -> new BusinessException("Böyle bir e-mail bulunamamıştır."));
+                -> new BusinessException(ErrorMessages.EMAİL_NOT_FOUND));
 
         Authentication authentication =
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
-        if(!authentication.isAuthenticated()){
-            throw new BusinessException("E-posta ya da şifre yanlıştır.");
-        }
+        userBusinessRule.authentication(authentication);
+
         Map<String, Object> extraClaims = new HashMap<>();
         extraClaims.put("UserId", user.getId());
         extraClaims.put("UserName", user.getFirstName());

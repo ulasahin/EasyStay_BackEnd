@@ -1,5 +1,6 @@
 package com.example.easystay.service.concretes;
 
+import com.example.easystay.core.exceptionhandling.exception.problemdetails.ErrorMessages;
 import com.example.easystay.core.exceptionhandling.exception.types.BusinessException;
 import com.example.easystay.mapper.UserMapper;
 import com.example.easystay.model.entity.User;
@@ -53,7 +54,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UpdateUserResponse update(UpdateUserRequest request) {
         User user = userRepository.findById(request.getId()).orElseThrow(()
-                -> new BusinessException("Bu Id'ye sahip bir kullanıcı bulunmamıştır."));
+                -> new BusinessException(ErrorMessages.USER_NOT_FOUND));
 
         userBusinessRule.emailShouldNotExist(request.getEmail());
 
@@ -67,7 +68,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public DeleteUserResponse delete(long id) {
         User user = userRepository.findById(id).orElseThrow(()
-                -> new BusinessException("Bu Id'ye sahip bir kullanıcı bulunmamıştır."));
+                -> new BusinessException(ErrorMessages.USER_NOT_FOUND));
         DeleteUserResponse response = UserMapper.INSTANCE.userFromDeleteResponse(user);
         userRepository.delete(user);
         return response;
@@ -76,7 +77,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public ListUserResponse getById(long id) {
         User user = userRepository.findById(id).orElseThrow(()
-                -> new BusinessException("Bu Id'ye sahip bir kullanıcı bulunmamıştır."));
+                -> new BusinessException(ErrorMessages.USER_NOT_FOUND));
         ListUserResponse response = UserMapper.INSTANCE.userFromGetResponse(user);
         return response;
     }
@@ -84,7 +85,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUsername(String email) {
         return userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("Şu e-postaya ait kullanıcı bulunamadı:" + email));
+                .orElseThrow(() -> new UsernameNotFoundException(ErrorMessages.USER_NOT_FOUND_FOR_EMAİL + email));
     }
 
     @Override

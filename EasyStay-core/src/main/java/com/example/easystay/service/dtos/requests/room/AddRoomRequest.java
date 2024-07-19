@@ -1,5 +1,6 @@
 package com.example.easystay.service.dtos.requests.room;
 
+import com.example.easystay.core.exceptionhandling.exception.problemdetails.ErrorMessages;
 import com.example.easystay.model.enums.RoomType;
 import com.example.easystay.model.enums.RoomStatus;
 import jakarta.validation.constraints.NotBlank;
@@ -14,17 +15,17 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddRoomRequest {
-    @NotBlank(message = "Oda numarası kısmı boş olamaz.")
-    @Pattern(regexp = "\\d+",message = "Oda numarası sadece numerik ifadeler içermelidir.")
+    @NotBlank(message = ErrorMessages.NOT_BLANK_ROOM_NUMBER)
+    @Pattern(regexp = "\\d+",message = ErrorMessages.JUST_NUMERİC_CHAR_FOR_ROOM_NUMBER)
     private int roomNumber;
 
-    @NotBlank(message = "Ücret kısmı boş olamaz.")
-    @Pattern(regexp = "\\d+",message = "Ücret kısmı sadece numarik ifadeler içermelidir.")
+    @NotBlank(message = ErrorMessages.NOT_BLANK_ROOM_PRİCE)
+    @Pattern(regexp = "\\d+",message = ErrorMessages.JUST_NUMERİC_CHAR_FOR_ROOM_PRİCE)
     private double price;
 
-    @NotBlank(message = "Durum kısmı boş olamaz.")
+    @NotBlank(message = ErrorMessages.NOT_BLANK_ROOM_STATUS)
     private RoomStatus status;
 
-    @NotBlank(message = "Oda tipi boş olamaz.")
+    @NotBlank(message = ErrorMessages.NOT_BLANK_ROOM_TYPE)
     private RoomType roomType;
 }
