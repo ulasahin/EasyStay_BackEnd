@@ -15,10 +15,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UpdateRoomRequest {
     private long id;
-    @Pattern(regexp = "\\d+",message = ErrorMessages.JUST_NUMERİC_CHAR_FOR_ROOM_NUMBER)
+    @Pattern(regexp = "\\d+",message = ErrorMessages.JUST_NUMERIC_CHAR_FOR_ROOM_NUMBER)
     private int roomNumber;
 
-    @Pattern(regexp = "\\d+",message = ErrorMessages.JUST_NUMERİC_CHAR_FOR_ROOM_PRİCE)
+    @Pattern(regexp = "\\d+",message = ErrorMessages.JUST_NUMERIC_CHAR_FOR_ROOM_PRICE)
     private double price;
 
     private RoomType roomType;

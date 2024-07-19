@@ -3,7 +3,6 @@ package com.example.easystay.service.dtos.requests.user;
 import com.example.easystay.core.exceptionhandling.exception.problemdetails.ErrorMessages;
 import com.example.easystay.model.enums.Role;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -18,13 +17,13 @@ import lombok.Setter;
 public class UpdateUserRequest {
     private long id;
 
-    @Size(min=0,max = 50,message = ErrorMessages.FİRST_NAME_SIZE_3_50)
+    @Size(min=0,max = 50,message = ErrorMessages.FIRST_NAME_SIZE_3_50)
     private String firstName;
 
     @Size(min=0,max = 50,message = ErrorMessages.LAST_NAME_SIZE_3_50)
     private String lastName;
 
-    @Email(message = ErrorMessages.INVALİD_EMAİL)
+    @Email(message = ErrorMessages.INVALID_EMAIL)
     private String email;
 
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[A-Z]).{6,}$"

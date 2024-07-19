@@ -16,7 +16,7 @@ public class Request {
     @Min(4)
     private Long amount;
 
-    @Email(message = ErrorMessages.INVALİD_EMAİL)
+    @Email(message = ErrorMessages.INVALID_EMAIL)
     private String email;
 
     @NotBlank
