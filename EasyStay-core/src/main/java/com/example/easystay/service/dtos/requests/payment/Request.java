@@ -1,5 +1,6 @@
 package com.example.easystay.service.dtos.requests.payment;
 
+import com.example.easystay.core.exceptionhandling.exception.problemdetails.ErrorMessages;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,7 +16,7 @@ public class Request {
     @Min(4)
     private Long amount;
 
-    @Email
+    @Email(message = ErrorMessages.INVALİD_EMAİL)
     private String email;
 
     @NotBlank

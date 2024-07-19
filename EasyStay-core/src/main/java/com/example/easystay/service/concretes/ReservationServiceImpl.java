@@ -1,5 +1,6 @@
 package com.example.easystay.service.concretes;
 
+import com.example.easystay.core.exceptionhandling.exception.problemdetails.ErrorMessages;
 import com.example.easystay.core.exceptionhandling.exception.types.BusinessException;
 import com.example.easystay.core.mail.EmailService;
 import com.example.easystay.mapper.ReservationMapper;
@@ -19,6 +20,7 @@ import com.example.easystay.service.dtos.responses.reservation.*;
 import com.example.easystay.service.rules.EmailBusinessRule;
 import com.example.easystay.service.rules.ReservationBusinessRule;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.api.ErrorMessage;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -43,9 +45,9 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public AddReservationResponse add(AddReservationRequest request) {
         User user = userRepository.findById(request.getUserId()).orElseThrow(()
-                -> new BusinessException("Böyle bir Id'ye sahip kullanıcı bulunamamıştır."));
+                -> new BusinessException(ErrorMessages.USER_NOT_FOUND));
         Room room = roomRepository.findById(request.getRoomId()).orElseThrow(()
-                -> new BusinessException("Böyle bir Id'ye sahip oda bulunamamıştır."));
+                -> new BusinessException(ErrorMessages.ROOM_NOT_FOUND));
         Reservation reservation = ReservationMapper.INSTANCE.reservationFromRequest(request);
 
         reservationBusinessRule.isRoomFull(room);
@@ -110,14 +112,14 @@ public class ReservationServiceImpl implements ReservationService {
             reservationRepository.save(reservation);
         }
         else {
-            throw new BusinessException("Böyle bir rezervasyonunuz yoktur.");
+            throw new BusinessException(ErrorMessages.RESEVR_NOT_EXİST);
         }
     }
 
     @Override
     public DeleteReservationResponse delete(long id) {
         Reservation reservation = reservationRepository.findById(id).orElseThrow(()
-                -> new BusinessException("Böyle bir Id'ye sahip rezervasyon bulunamamıştır."));
+                -> new BusinessException(ErrorMessages.RESEVR_NOT_FOUND));
         DeleteReservationResponse response = ReservationMapper.INSTANCE.reservationFromDeleteResponse(reservation);
         reservationRepository.delete(reservation);
         return response;
@@ -126,7 +128,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public GetResevationResponse getById(long id) {
         Reservation reservation = reservationRepository.findById(id).orElseThrow(()
-                -> new BusinessException("Böyle bir Id'ye sahip rezervasyon bulunamadı."));
+                -> new BusinessException(ErrorMessages.RESEVR_NOT_FOUND));
         GetResevationResponse response = ReservationMapper.INSTANCE.reservationFromGetResponse(reservation);
         return response;
     }

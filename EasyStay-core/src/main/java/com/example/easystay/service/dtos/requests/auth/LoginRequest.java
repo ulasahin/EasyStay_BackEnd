@@ -1,5 +1,6 @@
 package com.example.easystay.service.dtos.requests.auth;
 
+import com.example.easystay.core.exceptionhandling.exception.problemdetails.ErrorMessages;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -13,12 +14,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoginRequest {
-    @NotBlank(message = "E-mail kısmı boş olamaz")
-    @Email(message = "Geçerli bir e-mail giriniz.")
+    @NotBlank(message = ErrorMessages.NOT_BLANK_EMAİL)
+    @Email(message = ErrorMessages.INVALİD_EMAİL)
     private String email;
 
-    @NotBlank(message = "Şifre alanı boş olamaz.")
+    @NotBlank(message = ErrorMessages.NOT_BLANK_PASS)
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[A-Z]).{6,}$"
-            ,message = "Şifre en az bir numerik, en az bir tane büyük harf içermeli ve en az 6 karakter olmalıdır.")
+            ,message = ErrorMessages.REGEXP_FOR_PASS)
     private String password;
 }

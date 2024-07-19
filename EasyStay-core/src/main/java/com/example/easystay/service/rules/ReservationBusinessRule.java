@@ -1,5 +1,6 @@
 package com.example.easystay.service.rules;
 
+import com.example.easystay.core.exceptionhandling.exception.problemdetails.ErrorMessages;
 import com.example.easystay.core.exceptionhandling.exception.types.BusinessException;
 import com.example.easystay.model.entity.Room;
 import com.example.easystay.model.enums.RoomStatus;
@@ -15,7 +16,7 @@ public class ReservationBusinessRule {
 
     public void isRoomFull(Room room){
         if(room.getStatus()== RoomStatus.OCCUPIED){
-            throw new BusinessException("Bu oda doludur.");
+            throw new BusinessException(ErrorMessages.ROOM_FULL);
         }
     }
 }

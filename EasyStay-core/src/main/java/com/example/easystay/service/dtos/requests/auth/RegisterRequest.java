@@ -1,5 +1,6 @@
 package com.example.easystay.service.dtos.requests.auth;
 
+import com.example.easystay.core.exceptionhandling.exception.problemdetails.ErrorMessages;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -15,30 +16,30 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RegisterRequest {
 
-    @NotBlank(message = "İsim kısmı boş olamaz.")
-    @Size(min=3,max = 50,message = "İsim 3 ila 50 karakter arasında olabilir.")
+    @NotBlank(message = ErrorMessages.NOT_BLANK_FIRST_NAME)
+    @Size(min=3,max = 50,message = ErrorMessages.FİRST_NAME_SIZE_3_50)
     private String firstName;
 
-    @NotBlank(message = "Soyisim kısmı boş olamaz.")
-    @Size(min=3,max = 50,message = "Soyisim 3 ila 50 karakter arasında olabilir.")
+    @NotBlank(message = ErrorMessages.NOT_BLANK_LAST_NAME)
+    @Size(min=3,max = 50,message = ErrorMessages.LAST_NAME_SIZE_3_50)
     private String lastName;
 
-    @NotBlank(message = "E-mail alanı boş olamaz.")
-    @Email(message = "Geçerli bir Email değil.")
+    @NotBlank(message = ErrorMessages.INVALİD_EMAİL)
+    @Email(message = ErrorMessages.INVALİD_EMAİL)
     private String email;
 
-    @NotBlank(message = "Şifre alanı boş olamaz.")
+    @NotBlank(message = ErrorMessages.NOT_BLANK_PASS)
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[A-Z]).{6,}$"
-            ,message = "Şifre en az bir numerik, en az bir tane büyük harf içermeli ve en az 6 karakter olmalıdır.")
+            ,message = ErrorMessages.REGEXP_FOR_PASS)
     private String password;
 
-    @NotBlank(message = "Şifre alanı boş olamaz.")
+    @NotBlank(message = ErrorMessages.NOT_BLANK_PASS)
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[A-Z]).{6,}$"
-            ,message = "Şifre en az bir numerik, en az bir tane büyük harf içermeli ve en az 6 karakter olmalıdır.")
+            ,message = ErrorMessages.REGEXP_FOR_PASS)
     private String passwordConfirm;
 
-    @NotBlank(message = "Numara kısmı boş olamaz.")
-    @Pattern(regexp= "\\d+" , message = "Numara sadece numerik ifadeler içermelidir.")
-    @Size(min = 10,max = 10, message = "Numara kısmı 10 haneli olmalı.")
+    @NotBlank(message = ErrorMessages.NOT_BLANK_NUMBER)
+    @Pattern(regexp= "\\d+" , message = ErrorMessages.JUST_NUMERIC_CHAR)
+    @Size(min = 10,max = 10, message = ErrorMessages.NUMBER_SIZE_10)
     private String phoneNumber;
 }

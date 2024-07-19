@@ -1,5 +1,6 @@
 package com.example.easystay.service.dtos.requests.user;
 
+import com.example.easystay.core.exceptionhandling.exception.problemdetails.ErrorMessages;
 import com.example.easystay.model.enums.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -17,21 +18,21 @@ import lombok.Setter;
 public class UpdateUserRequest {
     private long id;
 
-    @Size(min=0,max = 50,message = "İsim 3 ila 50 karakter arasında olabilir.")
+    @Size(min=0,max = 50,message = ErrorMessages.FİRST_NAME_SIZE_3_50)
     private String firstName;
 
-    @Size(min=0,max = 50,message = "Soyisim 3 ila 50 karakter arasında olabilir.")
+    @Size(min=0,max = 50,message = ErrorMessages.LAST_NAME_SIZE_3_50)
     private String lastName;
 
-    @Email(message = "Geçerli bir Email değil.")
+    @Email(message = ErrorMessages.INVALİD_EMAİL)
     private String email;
 
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[A-Z]).{6,}$"
-            ,message = "Şifre en az bir numerik, en az bir tane büyük harf içermeli ve en az 6 karakter olmalıdır.")
+            ,message = ErrorMessages.REGEXP_FOR_PASS)
     private String password;
 
-    @Pattern(regexp= "\\d+" , message = "Numara sadece numerik ifadeler içermelidir.")
-    @Size(min = 11,max = 11, message = "Numara kısmı 11 haneli olmalı.")
+    @Pattern(regexp= "\\d+" , message = ErrorMessages.JUST_NUMERIC_CHAR)
+    @Size(min = 10,max = 10, message = ErrorMessages.NUMBER_SIZE_10)
     private String phoneNumber;
 
     private Role role;
